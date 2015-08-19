@@ -71,6 +71,13 @@ namespace Question_Editor
                 c.optionb.TextChanged += new EventHandler(text_changed); 
                 c.optionc.TextChanged += new EventHandler(text_changed); 
                 c.optiond.TextChanged += new EventHandler(text_changed);
+
+                c.question.SelectionChanged += new EventHandler(selection_changed);
+                c.optiona.SelectionChanged += new EventHandler(selection_changed);
+                c.optionb.SelectionChanged += new EventHandler(selection_changed);
+                c.optionc.SelectionChanged += new EventHandler(selection_changed);
+                c.optiond.SelectionChanged += new EventHandler(selection_changed);
+
                 c.paste.Click += new EventHandler(paste_clicked);
             }
         }
@@ -176,10 +183,22 @@ namespace Question_Editor
                 m_questions[i + index].optiond = sender.Rtf;
         }
 
+        public void selection_changed(object _sender, EventArgs args)
+        {
+            RichTextBox sender = (RichTextBox)_sender;
+            //String tag = sender.Tag.ToString();
+            //int index = Int32.Parse(tag.Substring(2));
+            //QuestionControls controls = m_questionControls[index];
+
+            m_lastTextBox = sender;
+        }
+
+        public RichTextBox m_lastTextBox;
+
         public void paste_clicked(object _sender, EventArgs args)
         {
             Button sender = (Button)_sender;
-            int index = Int32.Parse((string)sender.Tag);
+            int index = Int32.Parse(sender.Tag.ToString());
             QuestionControls controls = m_questionControls[index];
 
             controls.question.Paste();
