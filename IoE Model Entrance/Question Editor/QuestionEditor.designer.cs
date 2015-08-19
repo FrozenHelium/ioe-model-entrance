@@ -58,6 +58,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.btn_paste = new System.Windows.Forms.Button();
             this.pnl_holder.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -67,6 +68,7 @@
             // pnl_holder
             // 
             this.pnl_holder.AutoScroll = true;
+            this.pnl_holder.Controls.Add(this.btn_paste);
             this.pnl_holder.Controls.Add(this.lbl_qn1);
             this.pnl_holder.Controls.Add(this.rtb_question1);
             this.pnl_holder.Controls.Add(this.rtb_optiona1);
@@ -334,6 +336,17 @@
             this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton7.Text = "Decrease font size";
             // 
+            // btn_paste
+            // 
+            this.btn_paste.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_paste.Location = new System.Drawing.Point(811, 19);
+            this.btn_paste.Name = "btn_paste";
+            this.btn_paste.Size = new System.Drawing.Size(77, 50);
+            this.btn_paste.TabIndex = 1;
+            this.btn_paste.Tag = "0";
+            this.btn_paste.Text = "Smart Paste";
+            this.btn_paste.UseVisualStyleBackColor = true;
+            // 
             // QuestionEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +404,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.Button btn_paste;
     }
 }
 
