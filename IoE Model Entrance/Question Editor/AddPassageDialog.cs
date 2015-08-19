@@ -12,14 +12,37 @@ namespace Question_Editor
 {
     public partial class AddPassageDialog : Form
     {
-        public AddPassageDialog()
+        private QuestionEditor m_parent;
+        public AddPassageDialog(QuestionEditor parent)
         {
+            m_parent = parent;
             InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                m_parent.m_passage = richTextBox1.Rtf;
+                m_parent.m_passage_qn = Int32.Parse(textBox1.Text);
+            }
+            catch (Exception) { }
+            this.Close();
+        }
+
+        private void AddPassageDialog_Load(object sender, EventArgs e)
+        {
+            if (m_parent != null)
+            {
+                richTextBox1.Rtf = m_parent.m_passage;
+                if (m_parent.m_passage_qn >= 0)
+                    textBox1.Text = m_parent.m_passage_qn.ToString();
+            }
         }
     }
 }

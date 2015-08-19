@@ -25,7 +25,7 @@ namespace Question_Editor
             controls.label = lbl_qn1; controls.question = rtb_question1;
             controls.optiona = rtb_optiona1; controls.optionb = rtb_optionb1; 
             controls.optionc = rtb_optionc1; controls.optiond = rtb_optiond1;
-            controls.paste = btn_paste;
+            controls.paste = btn_paste; controls.insert = btn_insert; controls.remove = btn_remove;
             m_questionControls.Add(controls);
             m_questions.Add(new Question());
 
@@ -41,6 +41,8 @@ namespace Question_Editor
                 controls.optionc = rtb_optionc1.Clone();
                 controls.optiond = rtb_optiond1.Clone();
                 controls.paste = btn_paste.Clone();
+                controls.insert = btn_insert.Clone();
+                controls.remove = btn_remove.Clone();
 
                 controls.label.Top += shift;
                 controls.question.Top += shift;
@@ -49,13 +51,17 @@ namespace Question_Editor
                 controls.optionc.Top += shift;
                 controls.optiond.Top += shift;
                 controls.paste.Top += shift;
+                controls.insert.Top += shift;
+                controls.remove.Top += shift;
 
                 controls.question.Tag = "qn" + i;
                 controls.optiona.Tag = "oa" + i;
                 controls.optionb.Tag = "ob" + i;
                 controls.optionc.Tag = "oc" + i;
                 controls.optiond.Tag = "od" + i;
-                controls.paste.Tag = i+"";
+                controls.paste.Tag = i + "";
+                controls.insert.Tag = i + "";
+                controls.remove.Tag = i + "";
 
                 shift += distance;
 
@@ -79,6 +85,8 @@ namespace Question_Editor
                 c.optiond.SelectionChanged += new EventHandler(selection_changed);
 
                 c.paste.Click += new EventHandler(paste_clicked);
+                c.insert.Click += new EventHandler(insert_question);
+                c.remove.Click += new EventHandler(delete_question);
             }
         }
 
@@ -87,10 +95,13 @@ namespace Question_Editor
         private int m_totalPages = 1;
         private int m_questionsPerPage = 10;
 
+        public String m_passage = "";
+        public int m_passage_qn = -1;
+
         struct QuestionControls {
             public Label label;
             public RichTextBox question, optiona, optionb, optionc, optiond;
-            public Button paste;
+            public Button paste, insert, remove;
         }
 
         [Serializable]
@@ -418,7 +429,7 @@ namespace Question_Editor
 
         private void btn_insertPassage_Click(object sender, EventArgs e)
         {
-            AddPassageDialog dialog = new AddPassageDialog();
+            AddPassageDialog dialog = new AddPassageDialog(this);
             dialog.Show();
         }
     }
