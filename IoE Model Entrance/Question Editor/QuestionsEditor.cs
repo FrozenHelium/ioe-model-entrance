@@ -27,7 +27,7 @@ namespace Question_Editor
             m_questionControls.Add(controls);
             m_questions.Add(new Question());
 
-            int distance = 370;
+            int distance = 300;
             int shift = distance;
             for (int i = 1; i < m_questionsPerPage; ++i)
             {

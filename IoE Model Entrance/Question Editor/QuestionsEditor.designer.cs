@@ -54,84 +54,91 @@
             this.pnl_holder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_holder.Location = new System.Drawing.Point(0, 0);
             this.pnl_holder.Name = "pnl_holder";
-            this.pnl_holder.Size = new System.Drawing.Size(872, 446);
+            this.pnl_holder.Size = new System.Drawing.Size(800, 400);
             this.pnl_holder.TabIndex = 2;
             // 
             // lbl_qn1
             // 
             this.lbl_qn1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbl_qn1.AutoSize = true;
-            this.lbl_qn1.Location = new System.Drawing.Point(20, 11);
+            this.lbl_qn1.Location = new System.Drawing.Point(0, 15);
             this.lbl_qn1.Name = "lbl_qn1";
             this.lbl_qn1.Size = new System.Drawing.Size(16, 13);
             this.lbl_qn1.TabIndex = 1;
             this.lbl_qn1.Text = "1.";
             // 
-            // rtb_optionb1
+            // rtb_question1
             // 
-            this.rtb_optionb1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optionb1.Location = new System.Drawing.Point(447, 182);
-            this.rtb_optionb1.Name = "rtb_optionb1";
-            this.rtb_optionb1.Size = new System.Drawing.Size(385, 69);
-            this.rtb_optionb1.TabIndex = 0;
-            this.rtb_optionb1.Tag = "ob0";
-            this.rtb_optionb1.Text = "";
-            // 
-            // rtb_optiond1
-            // 
-            this.rtb_optiond1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optiond1.Location = new System.Drawing.Point(447, 257);
-            this.rtb_optiond1.Name = "rtb_optiond1";
-            this.rtb_optiond1.Size = new System.Drawing.Size(385, 69);
-            this.rtb_optiond1.TabIndex = 0;
-            this.rtb_optiond1.Tag = "od0";
-            this.rtb_optiond1.Text = "";
+            this.rtb_question1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.rtb_question1.Location = new System.Drawing.Point(50, 15);
+            this.rtb_question1.Name = "rtb_question1";
+            this.rtb_question1.Size = new System.Drawing.Size(700, 150);
+            this.rtb_question1.TabIndex = 0;
+            this.rtb_question1.Tag = "qn0";
+            this.rtb_question1.Text = "";
+            this.rtb_question1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             // 
             // rtb_optiona1
             // 
             this.rtb_optiona1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optiona1.Location = new System.Drawing.Point(49, 182);
+            this.rtb_optiona1.Location = new System.Drawing.Point(50, 180);
             this.rtb_optiona1.Name = "rtb_optiona1";
-            this.rtb_optiona1.Size = new System.Drawing.Size(392, 69);
+            this.rtb_optiona1.Size = new System.Drawing.Size(340, 50);
             this.rtb_optiona1.TabIndex = 0;
             this.rtb_optiona1.Tag = "oa0";
             this.rtb_optiona1.Text = "";
+            this.rtb_optiona1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             // 
-            // rtb_question1
+            // rtb_optionb1
             // 
-            this.rtb_question1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_question1.Location = new System.Drawing.Point(49, 12);
-            this.rtb_question1.Name = "rtb_question1";
-            this.rtb_question1.Size = new System.Drawing.Size(783, 164);
-            this.rtb_question1.TabIndex = 0;
-            this.rtb_question1.Tag = "qn0";
-            this.rtb_question1.Text = "";
+            this.rtb_optionb1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.rtb_optionb1.Location = new System.Drawing.Point(410, 180);
+            this.rtb_optionb1.Name = "rtb_optionb1";
+            this.rtb_optionb1.Size = new System.Drawing.Size(340, 50);
+            this.rtb_optionb1.TabIndex = 0;
+            this.rtb_optionb1.Tag = "ob0";
+            this.rtb_optionb1.Text = "";
+            this.rtb_optionb1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             // 
             // rtb_optionc1
             // 
             this.rtb_optionc1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optionc1.Location = new System.Drawing.Point(49, 257);
+            this.rtb_optionc1.Location = new System.Drawing.Point(50, 240);
             this.rtb_optionc1.Name = "rtb_optionc1";
-            this.rtb_optionc1.Size = new System.Drawing.Size(392, 69);
+            this.rtb_optionc1.Size = new System.Drawing.Size(340, 50);
             this.rtb_optionc1.TabIndex = 0;
             this.rtb_optionc1.Tag = "oc0";
             this.rtb_optionc1.Text = "";
+            this.rtb_optionc1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            // 
+            // rtb_optiond1
+            // 
+            this.rtb_optiond1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.rtb_optiond1.Location = new System.Drawing.Point(410, 240);
+            this.rtb_optiond1.Name = "rtb_optiond1";
+            this.rtb_optiond1.Size = new System.Drawing.Size(340, 50);
+            this.rtb_optiond1.TabIndex = 0;
+            this.rtb_optiond1.Tag = "od0";
+            this.rtb_optiond1.Text = "";
+            this.rtb_optiond1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btn_prev);
             this.panel1.Controls.Add(this.btn_next);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 446);
+            this.panel1.Location = new System.Drawing.Point(0, 320);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(872, 52);
+            this.panel1.Size = new System.Drawing.Size(800, 50);
             this.panel1.TabIndex = 2;
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
             // 
             // btn_prev
             // 
-            this.btn_prev.Location = new System.Drawing.Point(49, 17);
+            this.btn_prev.Location = new System.Drawing.Point(50, 10);
             this.btn_prev.Name = "btn_prev";
-            this.btn_prev.Size = new System.Drawing.Size(75, 23);
+            this.btn_prev.Size = new System.Drawing.Size(100, 30);
             this.btn_prev.TabIndex = 0;
             this.btn_prev.Text = "Previous";
             this.btn_prev.UseVisualStyleBackColor = true;
@@ -140,9 +147,9 @@
             // btn_next
             // 
             this.btn_next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_next.Location = new System.Drawing.Point(732, 17);
+            this.btn_next.Location = new System.Drawing.Point(650, 10);
             this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(75, 23);
+            this.btn_next.Size = new System.Drawing.Size(100, 30);
             this.btn_next.TabIndex = 0;
             this.btn_next.Text = "Next";
             this.btn_next.UseVisualStyleBackColor = true;
@@ -152,12 +159,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(872, 498);
+            this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.pnl_holder);
             this.Controls.Add(this.panel1);
             this.Name = "QuestionsEditor";
-            this.Text = "Questons Editor";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "IoE Model Entrance - Question Editor";
+            this.MinimumSize = new System.Drawing.Size(900 + System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 400);
+            //this.WindowState = System.Windows.Forms.FormWidowState.Maximized;
             this.Load += new System.EventHandler(this.QuestionsEditor_Load);
             this.pnl_holder.ResumeLayout(false);
             this.pnl_holder.PerformLayout();
