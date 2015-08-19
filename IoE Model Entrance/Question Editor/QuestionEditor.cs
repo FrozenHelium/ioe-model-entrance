@@ -101,6 +101,8 @@ namespace Question_Editor
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
 
+        public RichTextBox m_lastTextBox;
+
         public void SaveQuestions(String fileName)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -138,13 +140,18 @@ namespace Question_Editor
                 MessageBox.Show("failed to load the file \"" + fileName + "\"\n\r" + e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             m_currentPage = 0;
-            m_totalPages = m_questions.Count() / m_questionsPerPage;
+            m_totalPages = m_questions.Count / m_questionsPerPage;
             this.RefreshQuestions();
             Cursor.Current = Cursors.Default;
         }
 
         public void RefreshQuestions()
         {
+            if (m_questions.Count % m_questionsPerPage != 0)
+            {
+                for (int j = m_questions.Count % m_questionsPerPage; j < m_questionsPerPage; ++j)
+                    m_questions.Add(new Question());
+            }
             int i = m_currentPage * m_questionsPerPage;
             foreach (QuestionControls qc in m_questionControls) 
             {
@@ -216,7 +223,25 @@ namespace Question_Editor
             tbtn_sub.Checked = (sender.SelectionCharOffset < 0);
         }
 
-        public RichTextBox m_lastTextBox;
+        public void insert_question(object _sender, EventArgs args)
+        {
+            Button sender = (Button)_sender;
+            int index = Int32.Parse(sender.Tag.ToString());
+            int i = m_currentPage * m_questionsPerPage;
+
+            m_questions.Insert(i+index, new Question());
+            RefreshQuestions();
+        }
+
+        public void delete_question(object _sender, EventArgs args)
+        {
+            Button sender = (Button)_sender;
+            int index = Int32.Parse(sender.Tag.ToString());
+            int i = m_currentPage * m_questionsPerPage;
+
+            m_questions.RemoveAt(i + index);
+            RefreshQuestions();
+        }
 
         public void paste_clicked(object _sender, EventArgs args)
         {
@@ -322,6 +347,7 @@ namespace Question_Editor
                 m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont, m_lastTextBox.SelectionFont.Style & ~style);
             m_formatting = false;
         }
+
         private void tbtn_bold_Click(object sender, EventArgs e)
         {
             ChangeFormatting(FontStyle.Bold, tbtn_bold.Checked);
