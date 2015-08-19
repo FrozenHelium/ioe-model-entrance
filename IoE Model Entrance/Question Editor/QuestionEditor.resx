@@ -126,4 +126,60 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>293, 17</value>
   </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>408, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABlSURBVDhPYxhmgJWF9T8O/AEonQLEPGCFuAArK6sxskaQ
+        GDMzszuUDcIgQ/ADdAOAgBnJgEdgEXwA3QCKXICE/wGlFgKxOFgRPoCsEcSnbxiwsLBYohtAkguQNaNh
+        4tLBiAQMDAA5pjrR7u85LAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABcSURBVDhPYxj+4D8WTDxgZ2dXAFJgjUC2EliQFMDGzBYC
+        pP5DabIAzNnMYB4pAGY7KytrAkSEdECR7YFA6j8LC0smRIQEAA1tsO1sbGxaYEESAMzZ6HgU4AQMDAB2
+        wBk9aZm1QgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF0SURBVEhLYxgFAwJENDU1/zs5Of1PTEz8HxQU9N/U1PQ/
+        Pz//Tqi8sJqa2n9ra+v/fn5+/42Njf9LS0tfg8oRBdrMzMz+i4uL/4fyUQAjI+NkCQkJkJwWRIR4YGxr
+        a/tfSkrqLpSPAtjZ2d3k5ORABotARIgHJjQz2M7ObtRgMKCdwTY2NjQxWN/IyAiU+O9D+SiAjY3NCygH
+        MlgYIkI8YAPlQA0NDZBmDCAkJDRDQEAAJMcBESEeMAoKCj6zt7f/DwySY1AxMLC0tIywsLD4D8x9M6FC
+        JANxHh6eD/r6+v+9vLz+AMuNVx4eHp9UVVX/s7Cw7ICqoQi4A3ERENcAcRYQ6wEx6QBYam0GYaALN4eG
+        hm6OiIjYHBcXtzk+KWlzamrq5szMzM25ubmbCwoKNhcXF2+uLC/fDNWKH/j7+/8H4eDg4P/hYeH/o6Ki
+        /gMN/p+YlPQfaPD/rKys/0CD/xcWFv4vLSn5X1lRgTWChxJgYAAA8MuKmQ3nlfgAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolStripButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFLSURBVDhPYxhBIHz6fYWSVc8uNG16/sG3824DVJh4kDTn
+        8Qb/9vsKnq03GxrWP/8PFSYdxM96eCFl3qMHUC4ClJeXHyguLj6QnZ19IC0t7UB8fLxCeHj4AT8/vwOu
+        rq4HQGrsy682hEy4c8E064oBWBMyKCoqCsjNzf2QkpLyH6h5AkjM19e3wcXFZYG9vb2CTdHVAMeqqwv0
+        888L6Cefd9CPP68A1ogM0tPTHYCa/0dGRv4Hai6A2QwCXs03DqTPffg/edaD/2ET7n6ACmOCsLCwCYGB
+        gf/d3Nz+A20WgAoTD/z9/QVAmoFO/29oaAj2CkkA5Gxra+sCIP5vYGDwX15e3gEqhR+AbAYFGEgziK+h
+        oTHByMjov4SExAd+fn7MUEcHIJutrKwOgJytpaVlICcnd0BMTOyAoKDgAS4urgOsrKyEDRkAwMAAAGMS
+        eDb0Ud/aAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButton5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFKSURBVDhPYxhGoLy8/EBxcfGB7OzsA2lpaQfi4+MVwsPD
+        D/j5+R1wdXU9AFWGGxQVFQXk5uZ+SElJ+Q/UPAEk5uvr2+Di4rLA3t5eAayIEEhPT3cAav4fGRn5H6i5
+        gCib0UFYWNiEwMDA/25ubv+BNgtAhYkH/v7+AiDNQKf/NzQ0BHuFJABytrW1dQEQ/zcwMPgvLy/vABIP
+        n35foWTVswtNm55/8O282wBWjAxANoMCDKQZxNfQ0JhgZGT0X0JC4gM/P79B0pzHG/zb7yt4tt5saFj/
+        /D9YEzIA2WxlZXUA5GwtLS0DOTm5A2JiYgcEBQUPcHFxHWBlZTUAqYuf9fBCyrxHD8CaSAX25VcbQibc
+        uWCadQVsGEnApuhqgGPV1QX6+ecF9JPPO+jHnycubcCAV/ONA+lzH/5PnvXgf9iEux+gwgMOGBgA1qV4
+        NvJOg4AAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>
