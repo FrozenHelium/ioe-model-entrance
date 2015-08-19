@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionEditor));
             this.pnl_holder = new System.Windows.Forms.Panel();
+            this.btn_remove = new System.Windows.Forms.Button();
+            this.btn_insert = new System.Windows.Forms.Button();
             this.btn_paste = new System.Windows.Forms.Button();
             this.lbl_qn1 = new System.Windows.Forms.Label();
             this.rtb_question1 = new System.Windows.Forms.RichTextBox();
@@ -37,7 +39,8 @@
             this.rtb_optionb1 = new System.Windows.Forms.RichTextBox();
             this.rtb_optionc1 = new System.Windows.Forms.RichTextBox();
             this.rtb_optiond1 = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnl_bottom = new System.Windows.Forms.Panel();
+            this.btn_insertPassage = new System.Windows.Forms.Button();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -50,18 +53,17 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBar = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_bold = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_italic = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_underline = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_super = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_sub = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.btn_insertPassage = new System.Windows.Forms.Button();
+            this.tbtn_incr = new System.Windows.Forms.ToolStripButton();
+            this.tbtn_decr = new System.Windows.Forms.ToolStripButton();
             this.pnl_holder.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnl_bottom.SuspendLayout();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +71,8 @@
             // pnl_holder
             // 
             this.pnl_holder.AutoScroll = true;
+            this.pnl_holder.Controls.Add(this.btn_remove);
+            this.pnl_holder.Controls.Add(this.btn_insert);
             this.pnl_holder.Controls.Add(this.btn_paste);
             this.pnl_holder.Controls.Add(this.lbl_qn1);
             this.pnl_holder.Controls.Add(this.rtb_question1);
@@ -81,6 +85,26 @@
             this.pnl_holder.Name = "pnl_holder";
             this.pnl_holder.Size = new System.Drawing.Size(900, 401);
             this.pnl_holder.TabIndex = 0;
+            // 
+            // btn_remove
+            // 
+            this.btn_remove.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_remove.Image = global::Question_Editor.Properties.Resources.file_delete;
+            this.btn_remove.Location = new System.Drawing.Point(810, 145);
+            this.btn_remove.Name = "btn_remove";
+            this.btn_remove.Size = new System.Drawing.Size(48, 48);
+            this.btn_remove.TabIndex = 3;
+            this.btn_remove.UseVisualStyleBackColor = true;
+            // 
+            // btn_insert
+            // 
+            this.btn_insert.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_insert.Image = global::Question_Editor.Properties.Resources.file_add;
+            this.btn_insert.Location = new System.Drawing.Point(810, 80);
+            this.btn_insert.Name = "btn_insert";
+            this.btn_insert.Size = new System.Drawing.Size(48, 48);
+            this.btn_insert.TabIndex = 2;
+            this.btn_insert.UseVisualStyleBackColor = true;
             // 
             // btn_paste
             // 
@@ -159,21 +183,32 @@
             this.rtb_optiond1.Tag = "od0";
             this.rtb_optiond1.Text = "";
             // 
-            // panel1
+            // pnl_bottom
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Controls.Add(this.btn_insertPassage);
-            this.panel1.Controls.Add(this.btn_prev);
-            this.panel1.Controls.Add(this.btn_next);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 450);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(900, 50);
-            this.panel1.TabIndex = 1;
+            this.pnl_bottom.BackColor = System.Drawing.Color.LightGray;
+            this.pnl_bottom.Controls.Add(this.btn_insertPassage);
+            this.pnl_bottom.Controls.Add(this.btn_prev);
+            this.pnl_bottom.Controls.Add(this.btn_next);
+            this.pnl_bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_bottom.Location = new System.Drawing.Point(0, 450);
+            this.pnl_bottom.Name = "pnl_bottom";
+            this.pnl_bottom.Size = new System.Drawing.Size(900, 50);
+            this.pnl_bottom.TabIndex = 1;
+            // 
+            // btn_insertPassage
+            // 
+            this.btn_insertPassage.Location = new System.Drawing.Point(37, 10);
+            this.btn_insertPassage.Name = "btn_insertPassage";
+            this.btn_insertPassage.Size = new System.Drawing.Size(126, 29);
+            this.btn_insertPassage.TabIndex = 2;
+            this.btn_insertPassage.Text = "Insert passage ...";
+            this.btn_insertPassage.UseVisualStyleBackColor = true;
+            this.btn_insertPassage.Click += new System.EventHandler(this.btn_insertPassage_Click);
             // 
             // btn_prev
             // 
-            this.btn_prev.Location = new System.Drawing.Point(50, 10);
+            this.btn_prev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_prev.Location = new System.Drawing.Point(620, 10);
             this.btn_prev.Name = "btn_prev";
             this.btn_prev.Size = new System.Drawing.Size(100, 30);
             this.btn_prev.TabIndex = 1;
@@ -192,23 +227,23 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
             this.openFileDialog.DefaultExt = "qset";
             this.openFileDialog.Filter = "Question set file|*.qset";
             // 
-            // saveFileDialog1
+            // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "qset";
             this.saveFileDialog.Filter = "Question set file|*.qset";
             // 
-            // menuStrip1
+            // mainMenu
             // 
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
-            this.mainMenu.Name = "menuStrip1";
+            this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(900, 24);
             this.mainMenu.TabIndex = 3;
             this.mainMenu.Text = "menuStrip1";
@@ -259,105 +294,108 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // toolStrip1
+            // toolBar
             // 
             this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
+            this.tbtn_bold,
+            this.tbtn_italic,
+            this.tbtn_underline,
             this.toolStripSeparator1,
-            this.toolStripButton4,
-            this.toolStripButton5,
+            this.tbtn_super,
+            this.tbtn_sub,
             this.toolStripSeparator2,
-            this.toolStripButton6,
-            this.toolStripButton7});
+            this.tbtn_incr,
+            this.tbtn_decr});
             this.toolBar.Location = new System.Drawing.Point(0, 24);
-            this.toolBar.Name = "toolStrip1";
+            this.toolBar.Name = "toolBar";
             this.toolBar.Size = new System.Drawing.Size(900, 25);
             this.toolBar.TabIndex = 4;
             this.toolBar.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // tbtn_bold
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Bold";
+            this.tbtn_bold.CheckOnClick = true;
+            this.tbtn_bold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_bold.Image = ((System.Drawing.Image)(resources.GetObject("tbtn_bold.Image")));
+            this.tbtn_bold.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_bold.Name = "tbtn_bold";
+            this.tbtn_bold.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_bold.Text = "Bold";
+            this.tbtn_bold.Click += new System.EventHandler(this.tbtn_bold_Click);
             // 
-            // toolStripButton2
+            // tbtn_italic
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Italic";
+            this.tbtn_italic.CheckOnClick = true;
+            this.tbtn_italic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_italic.Image = ((System.Drawing.Image)(resources.GetObject("tbtn_italic.Image")));
+            this.tbtn_italic.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_italic.Name = "tbtn_italic";
+            this.tbtn_italic.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_italic.Text = "Italic";
+            this.tbtn_italic.Click += new System.EventHandler(this.tbtn_italic_Click);
             // 
-            // toolStripButton3
+            // tbtn_underline
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Underline";
+            this.tbtn_underline.CheckOnClick = true;
+            this.tbtn_underline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_underline.Image = ((System.Drawing.Image)(resources.GetObject("tbtn_underline.Image")));
+            this.tbtn_underline.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_underline.Name = "tbtn_underline";
+            this.tbtn_underline.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_underline.Text = "Underline";
+            this.tbtn_underline.Click += new System.EventHandler(this.tbtn_underline_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton4
+            // tbtn_super
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "Superscript";
+            this.tbtn_super.CheckOnClick = true;
+            this.tbtn_super.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_super.Image = ((System.Drawing.Image)(resources.GetObject("tbtn_super.Image")));
+            this.tbtn_super.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_super.Name = "tbtn_super";
+            this.tbtn_super.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_super.Text = "Superscript";
+            this.tbtn_super.Click += new System.EventHandler(this.tbtn_super_Click);
             // 
-            // toolStripButton5
+            // tbtn_sub
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "Subscript";
+            this.tbtn_sub.CheckOnClick = true;
+            this.tbtn_sub.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_sub.Image = ((System.Drawing.Image)(resources.GetObject("tbtn_sub.Image")));
+            this.tbtn_sub.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_sub.Name = "tbtn_sub";
+            this.tbtn_sub.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_sub.Text = "Subscript";
+            this.tbtn_sub.Click += new System.EventHandler(this.tbtn_sub_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton6
+            // tbtn_incr
             // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = global::Question_Editor.Properties.Resources.increase_font_size;
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Increase font size";
+            this.tbtn_incr.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_incr.Image = global::Question_Editor.Properties.Resources.increase_font_size;
+            this.tbtn_incr.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_incr.Name = "tbtn_incr";
+            this.tbtn_incr.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_incr.Text = "Increase font size";
+            this.tbtn_incr.Click += new System.EventHandler(this.tbtn_incr_Click);
             // 
-            // toolStripButton7
+            // tbtn_decr
             // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = global::Question_Editor.Properties.Resources.decrease_font_size;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton7.Text = "Decrease font size";
-            // 
-            // button1
-            // 
-            this.btn_insertPassage.Location = new System.Drawing.Point(392, 10);
-            this.btn_insertPassage.Name = "button1";
-            this.btn_insertPassage.Size = new System.Drawing.Size(126, 29);
-            this.btn_insertPassage.TabIndex = 2;
-            this.btn_insertPassage.Text = "Insert passage ...";
-            this.btn_insertPassage.UseVisualStyleBackColor = true;
+            this.tbtn_decr.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbtn_decr.Image = global::Question_Editor.Properties.Resources.decrease_font_size;
+            this.tbtn_decr.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbtn_decr.Name = "tbtn_decr";
+            this.tbtn_decr.Size = new System.Drawing.Size(23, 22);
+            this.tbtn_decr.Text = "Decrease font size";
+            this.tbtn_decr.Click += new System.EventHandler(this.tbtn_decr_Click);
             // 
             // QuestionEditor
             // 
@@ -366,7 +404,7 @@
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.pnl_holder);
             this.Controls.Add(this.toolBar);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnl_bottom);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenu;
@@ -376,7 +414,7 @@
             this.Load += new System.EventHandler(this.QuestionsEditor_Load);
             this.pnl_holder.ResumeLayout(false);
             this.pnl_holder.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.pnl_bottom.ResumeLayout(false);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.toolBar.ResumeLayout(false);
@@ -395,7 +433,7 @@
         private System.Windows.Forms.RichTextBox rtb_optiona1;
         private System.Windows.Forms.RichTextBox rtb_question1;
         private System.Windows.Forms.RichTextBox rtb_optionc1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnl_bottom;
         private System.Windows.Forms.Button btn_prev;
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
@@ -408,17 +446,19 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolBar;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton tbtn_bold;
+        private System.Windows.Forms.ToolStripButton tbtn_italic;
+        private System.Windows.Forms.ToolStripButton tbtn_underline;
+        private System.Windows.Forms.ToolStripButton tbtn_super;
+        private System.Windows.Forms.ToolStripButton tbtn_sub;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripButton tbtn_incr;
+        private System.Windows.Forms.ToolStripButton tbtn_decr;
         private System.Windows.Forms.Button btn_paste;
         private System.Windows.Forms.Button btn_insertPassage;
+        private System.Windows.Forms.Button btn_insert;
+        private System.Windows.Forms.Button btn_remove;
     }
 }
 

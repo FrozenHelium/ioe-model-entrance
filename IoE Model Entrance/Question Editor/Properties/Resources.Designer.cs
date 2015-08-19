@@ -83,6 +83,26 @@ namespace Question_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_add {
+            get {
+                object obj = ResourceManager.GetObject("file_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file_delete {
+            get {
+                object obj = ResourceManager.GetObject("file_delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap increase_font_size {
             get {
                 object obj = ResourceManager.GetObject("increase_font_size", resourceCulture);

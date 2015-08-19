@@ -71,6 +71,13 @@ namespace Question_Editor
                 c.optionb.TextChanged += new EventHandler(text_changed); 
                 c.optionc.TextChanged += new EventHandler(text_changed); 
                 c.optiond.TextChanged += new EventHandler(text_changed);
+
+                c.question.SelectionChanged += new EventHandler(selection_changed);
+                c.optiona.SelectionChanged += new EventHandler(selection_changed);
+                c.optionb.SelectionChanged += new EventHandler(selection_changed);
+                c.optionc.SelectionChanged += new EventHandler(selection_changed);
+                c.optiond.SelectionChanged += new EventHandler(selection_changed);
+
                 c.paste.Click += new EventHandler(paste_clicked);
             }
         }
@@ -93,6 +100,7 @@ namespace Question_Editor
 
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
+        private String m_passageText = "";
 
         public void SaveQuestions(String fileName)
         {
@@ -104,14 +112,20 @@ namespace Question_Editor
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     bformatter.Serialize(stream, m_questions);
                 }
+                using (System.IO.Stream stream = System.IO.File.Open(fileName + "p", System.IO.FileMode.Create))
+                {
+                    byte[] buff = Encoding.UTF8.GetBytes(m_passageText);
+                    stream.Write(buff, 0, (int)m_passageText.Length);
+                }
+                
             }
             catch(Exception e)
             {
                 Cursor.Current = Cursors.Default;
-                MessageBox.Show("failed to save the file \"" + fileName + "\"\n\r"+e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("failed to save the file \"" + fileName + "\"\n\r"+e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Cursor.Current = Cursors.Default;
-            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void LoadQuestions(String fileName)
@@ -123,6 +137,12 @@ namespace Question_Editor
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     m_questions = (List<Question>)bformatter.Deserialize(stream);
+                }
+                using (System.IO.Stream stream = System.IO.File.Open(fileName+"p", System.IO.FileMode.Open))
+                {
+                    byte[] buff = new byte[stream.Length];
+                    stream.Read(buff, 0, (int)stream.Length);
+                    m_passageText = System.Text.Encoding.UTF8.GetString(buff);
                 }
             }
             catch (Exception e)
@@ -192,10 +212,29 @@ namespace Question_Editor
                 m_questions[i + index].optiond = sender.Rtf;
         }
 
+        public void selection_changed(object _sender, EventArgs args)
+        {
+            RichTextBox sender = (RichTextBox)_sender;
+            //String tag = sender.Tag.ToString();
+            //int index = Int32.Parse(tag.Substring(2));
+            //QuestionControls controls = m_questionControls[index];
+
+            m_lastTextBox = sender;
+            if (sender == null || sender.SelectionFont == null || m_formatting)
+                return;
+            tbtn_bold.Checked = sender.SelectionFont.Bold;
+            tbtn_italic.Checked = sender.SelectionFont.Italic;
+            tbtn_underline.Checked = sender.SelectionFont.Underline;
+            tbtn_super.Checked = (sender.SelectionCharOffset > 0);
+            tbtn_sub.Checked = (sender.SelectionCharOffset < 0);
+        }
+
+        public RichTextBox m_lastTextBox;
+
         public void paste_clicked(object _sender, EventArgs args)
         {
             Button sender = (Button)_sender;
-            int index = Int32.Parse((string)sender.Tag);
+            int index = Int32.Parse(sender.Tag.ToString());
             QuestionControls controls = m_questionControls[index];
 
             controls.question.Paste();
@@ -281,6 +320,80 @@ namespace Question_Editor
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private bool m_formatting = false;
+
+        private void ChangeFormatting(FontStyle style, bool check)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            if (check)
+                m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont, m_lastTextBox.SelectionFont.Style | style);
+            else
+                m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont, m_lastTextBox.SelectionFont.Style & ~style);
+            m_formatting = false;
+        }
+        private void tbtn_bold_Click(object sender, EventArgs e)
+        {
+            ChangeFormatting(FontStyle.Bold, tbtn_bold.Checked);
+        }
+
+        private void tbtn_italic_Click(object sender, EventArgs e)
+        {
+            ChangeFormatting(FontStyle.Italic, tbtn_italic.Checked);
+        }
+
+        private void tbtn_underline_Click(object sender, EventArgs e)
+        {
+            ChangeFormatting(FontStyle.Underline, tbtn_underline.Checked);
+        }
+
+        private void tbtn_super_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionCharOffset = (tbtn_super.Checked) ? 5 : 0;
+            m_formatting = false; ;
+        }
+
+        private void tbtn_sub_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionCharOffset = (tbtn_sub.Checked) ? -5 : 0;
+            m_formatting = false;
+        }
+
+        private void tbtn_incr_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont.FontFamily.Name,
+                m_lastTextBox.SelectionFont.Size+1,
+                m_lastTextBox.SelectionFont.Style);
+            m_formatting = false; 
+        }
+
+        private void tbtn_decr_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont.FontFamily.Name,
+                m_lastTextBox.SelectionFont.Size - 1,
+                m_lastTextBox.SelectionFont.Style);
+            m_formatting = false; 
+        }
+
+        private void btn_insertPassage_Click(object sender, EventArgs e)
+        {
+            AddPassageDialog dialog = new AddPassageDialog();
+            dialog.Show();
         }
     }
 }
