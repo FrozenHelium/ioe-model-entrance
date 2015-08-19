@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Question Editor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Question Editor tool for creating question sets for IoE Model Entrance")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FroBi")]
 [assembly: AssemblyProduct("Question Editor")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]

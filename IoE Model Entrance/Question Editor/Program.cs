@@ -16,7 +16,7 @@ namespace Question_Editor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuestionsEditor());
+            Application.Run(new QuestionEditor());
         }
     }
 }

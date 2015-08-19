@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,15 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutQuestionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutQuestionEditor.Designer.cs">
+      <DependentUpon>AboutQuestionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionsEditor.cs">
+    <Compile Include="QuestionEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuestionsEditor.designer.cs">
-      <DependentUpon>QuestionsEditor.cs</DependentUpon>
+    <Compile Include="QuestionEditor.designer.cs">
+      <DependentUpon>QuestionEditor.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutQuestionEditor.resx">
+      <DependentUpon>AboutQuestionEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,8 +74,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="QuestionsEditor.resx">
-      <DependentUpon>QuestionsEditor.cs</DependentUpon>
+    <EmbeddedResource Include="QuestionEditor.resx">
+      <DependentUpon>QuestionEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

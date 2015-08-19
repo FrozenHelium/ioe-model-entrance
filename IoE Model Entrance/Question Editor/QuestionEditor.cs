@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Question_Editor
 {
-    public partial class QuestionsEditor : Form
+    public partial class QuestionEditor : Form
     {
-        public QuestionsEditor()
+        public QuestionEditor()
         {
             InitializeComponent();
         }
@@ -81,12 +81,39 @@ namespace Question_Editor
             public RichTextBox question, optiona, optionb, optionc, optiond;
         }
 
+        [Serializable]
         private class Question {
             public String question="", optiona="", optionb="", optionc="", optiond="";
         }
 
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
+
+        public void SaveQuestions(String fileName)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Create))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                bformatter.Serialize(stream, m_questions);
+            }
+            Cursor.Current = Cursors.Default;
+            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void LoadQuestions(String fileName)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Open))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                m_questions = (List<Question>)bformatter.Deserialize(stream);
+                m_currentPage = 0;
+                m_totalPages = m_questions.Count() / m_questionsPerPage;
+                this.RefreshQuestions();
+            }
+            Cursor.Current = Cursors.Default;
+        }
 
         public void RefreshQuestions()
         {
@@ -142,6 +169,37 @@ namespace Question_Editor
                 m_questions[i + index].optionc = sender.Rtf;
             else if (type == "od")
                 m_questions[i + index].optiond = sender.Rtf;
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if(result == System.Windows.Forms.DialogResult.OK)
+            {
+                string fileName = openFileDialog1.FileName;
+                this.LoadQuestions(fileName);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = saveFileDialog1.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                string fileName = saveFileDialog1.FileName;
+                this.SaveQuestions(fileName);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutQuestionEditor about = new AboutQuestionEditor();
+            about.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
