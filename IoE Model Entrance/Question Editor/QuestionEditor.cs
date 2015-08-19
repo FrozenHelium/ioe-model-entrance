@@ -109,9 +109,15 @@ namespace Question_Editor
             public String question="", optiona="", optionb="", optionc="", optiond="";
         }
 
+        [Serializable]
+        private class Passage
+        {
+            public int passageQuestion = -1;
+            public String passageText="";
+        }
+
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
-        private String m_passageText = "";
 
         public RichTextBox m_lastTextBox;
 
@@ -127,8 +133,11 @@ namespace Question_Editor
                 }
                 using (System.IO.Stream stream = System.IO.File.Open(fileName + "p", System.IO.FileMode.Create))
                 {
-                    byte[] buff = Encoding.UTF8.GetBytes(m_passageText);
-                    stream.Write(buff, 0, (int)m_passageText.Length);
+                    Passage p = new Passage();
+                    p.passageQuestion = m_passage_qn;
+                    p.passageText = m_passage;
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Serialize(stream, p);
                 }
                 
             }
@@ -153,9 +162,11 @@ namespace Question_Editor
                 }
                 using (System.IO.Stream stream = System.IO.File.Open(fileName+"p", System.IO.FileMode.Open))
                 {
-                    byte[] buff = new byte[stream.Length];
-                    stream.Read(buff, 0, (int)stream.Length);
-                    m_passageText = System.Text.Encoding.UTF8.GetString(buff);
+                    Passage p = new Passage();
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    p = (Passage)bformatter.Deserialize(stream);
+                    m_passage_qn = p.passageQuestion;
+                    m_passage = p.passageText;
                 }
             }
             catch (Exception e)
