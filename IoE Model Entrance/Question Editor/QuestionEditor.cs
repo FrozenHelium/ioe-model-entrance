@@ -207,6 +207,13 @@ namespace Question_Editor
             //QuestionControls controls = m_questionControls[index];
 
             m_lastTextBox = sender;
+            if (sender == null || sender.SelectionFont == null || m_formatting)
+                return;
+            tbtn_bold.Checked = sender.SelectionFont.Bold;
+            tbtn_italic.Checked = sender.SelectionFont.Italic;
+            tbtn_underline.Checked = sender.SelectionFont.Underline;
+            tbtn_super.Checked = (sender.SelectionCharOffset > 0);
+            tbtn_sub.Checked = (sender.SelectionCharOffset < 0);
         }
 
         public RichTextBox m_lastTextBox;
@@ -300,6 +307,74 @@ namespace Question_Editor
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private bool m_formatting = false;
+
+        private void ChangeFormatting(FontStyle style, bool check)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            if (check)
+                m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont, m_lastTextBox.SelectionFont.Style | style);
+            else
+                m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont, m_lastTextBox.SelectionFont.Style & ~style);
+            m_formatting = false;
+        }
+        private void tbtn_bold_Click(object sender, EventArgs e)
+        {
+            ChangeFormatting(FontStyle.Bold, tbtn_bold.Checked);
+        }
+
+        private void tbtn_italic_Click(object sender, EventArgs e)
+        {
+            ChangeFormatting(FontStyle.Italic, tbtn_italic.Checked);
+        }
+
+        private void tbtn_underline_Click(object sender, EventArgs e)
+        {
+            ChangeFormatting(FontStyle.Underline, tbtn_underline.Checked);
+        }
+
+        private void tbtn_super_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionCharOffset = (tbtn_super.Checked) ? 5 : 0;
+            m_formatting = false; ;
+        }
+
+        private void tbtn_sub_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionCharOffset = (tbtn_sub.Checked) ? -5 : 0;
+            m_formatting = false;
+        }
+
+        private void tbtn_incr_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont.FontFamily.Name,
+                m_lastTextBox.SelectionFont.Size+1,
+                m_lastTextBox.SelectionFont.Style);
+            m_formatting = false; 
+        }
+
+        private void tbtn_decr_Click(object sender, EventArgs e)
+        {
+            if (m_lastTextBox == null)
+                return;
+            m_formatting = true;
+            m_lastTextBox.SelectionFont = new Font(m_lastTextBox.SelectionFont.FontFamily.Name,
+                m_lastTextBox.SelectionFont.Size - 1,
+                m_lastTextBox.SelectionFont.Style);
+            m_formatting = false; 
         }
     }
 }
