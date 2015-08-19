@@ -104,26 +104,42 @@ namespace Question_Editor
         public void SaveQuestions(String fileName)
         {
             Cursor.Current = Cursors.WaitCursor;
-            using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Create))
+            try
             {
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                bformatter.Serialize(stream, m_questions);
+                using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Create))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Serialize(stream, m_questions);
+                }
+            }
+            catch(Exception e)
+            {
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show("failed to save the file \"" + fileName + "\"\n\r"+e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             Cursor.Current = Cursors.Default;
-            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void LoadQuestions(String fileName)
         {
             Cursor.Current = Cursors.WaitCursor;
-            using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Open))
+            try
             {
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                m_questions = (List<Question>)bformatter.Deserialize(stream);
-                m_currentPage = 0;
-                m_totalPages = m_questions.Count() / m_questionsPerPage;
-                this.RefreshQuestions();
+                using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Open))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    m_questions = (List<Question>)bformatter.Deserialize(stream);
+                }
             }
+            catch (Exception e)
+            {
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show("failed to load the file \"" + fileName + "\"\n\r" + e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            m_currentPage = 0;
+            m_totalPages = m_questions.Count() / m_questionsPerPage;
+            this.RefreshQuestions();
             Cursor.Current = Cursors.Default;
         }
 
