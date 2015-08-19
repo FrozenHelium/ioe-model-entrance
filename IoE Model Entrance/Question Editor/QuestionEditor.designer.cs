@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionEditor));
             this.pnl_holder = new System.Windows.Forms.Panel();
+            this.btn_paste = new System.Windows.Forms.Button();
             this.lbl_qn1 = new System.Windows.Forms.Label();
             this.rtb_question1 = new System.Windows.Forms.RichTextBox();
             this.rtb_optiona1 = new System.Windows.Forms.RichTextBox();
@@ -39,16 +40,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolBar = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -58,11 +59,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.btn_paste = new System.Windows.Forms.Button();
+            this.btn_insertPassage = new System.Windows.Forms.Button();
             this.pnl_holder.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.mainMenu.SuspendLayout();
+            this.toolBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_holder
@@ -80,6 +81,18 @@
             this.pnl_holder.Name = "pnl_holder";
             this.pnl_holder.Size = new System.Drawing.Size(900, 401);
             this.pnl_holder.TabIndex = 0;
+            // 
+            // btn_paste
+            // 
+            this.btn_paste.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_paste.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_paste.Image = global::Question_Editor.Properties.Resources.paste;
+            this.btn_paste.Location = new System.Drawing.Point(810, 15);
+            this.btn_paste.Name = "btn_paste";
+            this.btn_paste.Size = new System.Drawing.Size(48, 48);
+            this.btn_paste.TabIndex = 1;
+            this.btn_paste.Tag = "0";
+            this.btn_paste.UseVisualStyleBackColor = true;
             // 
             // lbl_qn1
             // 
@@ -149,6 +162,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.Controls.Add(this.btn_insertPassage);
             this.panel1.Controls.Add(this.btn_prev);
             this.panel1.Controls.Add(this.btn_next);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -180,24 +194,24 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.DefaultExt = "qset";
-            this.openFileDialog1.Filter = "Question set file|*.qset";
+            this.openFileDialog.DefaultExt = "qset";
+            this.openFileDialog.Filter = "Question set file|*.qset";
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.DefaultExt = "qset";
-            this.saveFileDialog1.Filter = "Question set file|*.qset";
+            this.saveFileDialog.DefaultExt = "qset";
+            this.saveFileDialog.Filter = "Question set file|*.qset";
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "menuStrip1";
+            this.mainMenu.Size = new System.Drawing.Size(900, 24);
+            this.mainMenu.TabIndex = 3;
+            this.mainMenu.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -247,7 +261,7 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
@@ -257,11 +271,11 @@
             this.toolStripSeparator2,
             this.toolStripButton6,
             this.toolStripButton7});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(900, 25);
-            this.toolStrip1.TabIndex = 4;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolBar.Location = new System.Drawing.Point(0, 24);
+            this.toolBar.Name = "toolStrip1";
+            this.toolBar.Size = new System.Drawing.Size(900, 25);
+            this.toolBar.TabIndex = 4;
+            this.toolBar.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
@@ -336,16 +350,14 @@
             this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton7.Text = "Decrease font size";
             // 
-            // btn_paste
+            // button1
             // 
-            this.btn_paste.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_paste.Location = new System.Drawing.Point(811, 19);
-            this.btn_paste.Name = "btn_paste";
-            this.btn_paste.Size = new System.Drawing.Size(77, 50);
-            this.btn_paste.TabIndex = 1;
-            this.btn_paste.Tag = "0";
-            this.btn_paste.Text = "Smart Paste";
-            this.btn_paste.UseVisualStyleBackColor = true;
+            this.btn_insertPassage.Location = new System.Drawing.Point(392, 10);
+            this.btn_insertPassage.Name = "button1";
+            this.btn_insertPassage.Size = new System.Drawing.Size(126, 29);
+            this.btn_insertPassage.TabIndex = 2;
+            this.btn_insertPassage.Text = "Insert passage ...";
+            this.btn_insertPassage.UseVisualStyleBackColor = true;
             // 
             // QuestionEditor
             // 
@@ -353,10 +365,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.pnl_holder);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolBar);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.mainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(900, 400);
             this.Name = "QuestionEditor";
             this.Text = "IoE Model Entrance - Question Editor";
@@ -364,10 +377,10 @@
             this.pnl_holder.ResumeLayout(false);
             this.pnl_holder.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
+            this.toolBar.ResumeLayout(false);
+            this.toolBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,16 +398,16 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_prev;
         private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolBar;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
@@ -405,6 +418,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.Button btn_paste;
+        private System.Windows.Forms.Button btn_insertPassage;
     }
 }
 

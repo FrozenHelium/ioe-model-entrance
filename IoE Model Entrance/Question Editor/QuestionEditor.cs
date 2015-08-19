@@ -254,20 +254,20 @@ namespace Question_Editor
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
+            DialogResult result = openFileDialog.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK)
             {
-                string fileName = openFileDialog1.FileName;
+                string fileName = openFileDialog.FileName;
                 this.LoadQuestions(fileName);
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = saveFileDialog1.ShowDialog();
+            DialogResult result = saveFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                string fileName = saveFileDialog1.FileName;
+                string fileName = saveFileDialog.FileName;
                 this.SaveQuestions(fileName);
             }
         }
