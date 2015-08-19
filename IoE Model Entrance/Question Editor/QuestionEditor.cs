@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,6 +25,7 @@ namespace Question_Editor
             controls.label = lbl_qn1; controls.question = rtb_question1;
             controls.optiona = rtb_optiona1; controls.optionb = rtb_optionb1; 
             controls.optionc = rtb_optionc1; controls.optiond = rtb_optiond1;
+            controls.paste = btn_paste;
             m_questionControls.Add(controls);
             m_questions.Add(new Question());
 
@@ -31,31 +33,32 @@ namespace Question_Editor
             int shift = distance;
             for (int i = 1; i < m_questionsPerPage; ++i)
             {
-                Label label = lbl_qn1.Clone();
-                RichTextBox question = rtb_question1.Clone();
-                RichTextBox optiona = rtb_optiona1.Clone();
-                RichTextBox optionb = rtb_optionb1.Clone();
-                RichTextBox optionc = rtb_optionc1.Clone();
-                RichTextBox optiond = rtb_optiond1.Clone();
+                controls = new QuestionControls();
+                controls.label = lbl_qn1.Clone();
+                controls.question = rtb_question1.Clone();
+                controls.optiona = rtb_optiona1.Clone();
+                controls.optionb = rtb_optionb1.Clone();
+                controls.optionc = rtb_optionc1.Clone();
+                controls.optiond = rtb_optiond1.Clone();
+                controls.paste = btn_paste.Clone();
 
-                label.Top += shift;
-                question.Top += shift;
-                optiona.Top += shift;
-                optionb.Top += shift;
-                optionc.Top += shift;
-                optiond.Top += shift;
+                controls.label.Top += shift;
+                controls.question.Top += shift;
+                controls.optiona.Top += shift;
+                controls.optionb.Top += shift;
+                controls.optionc.Top += shift;
+                controls.optiond.Top += shift;
+                controls.paste.Top += shift;
 
-                question.Tag = "qn" + i;
-                optiona.Tag = "oa" + i;
-                optionb.Tag = "ob" + i;
-                optionc.Tag = "oc" + i;
-                optiond.Tag = "od" + i;
+                controls.question.Tag = "qn" + i;
+                controls.optiona.Tag = "oa" + i;
+                controls.optionb.Tag = "ob" + i;
+                controls.optionc.Tag = "oc" + i;
+                controls.optiond.Tag = "od" + i;
+                controls.paste.Tag = i+"";
 
                 shift += distance;
 
-                controls = new QuestionControls();
-                controls.label = label; controls.question = question;
-                controls.optiona = optiona; controls.optionb = optionb; controls.optionc = optionc; controls.optiond = optiond;
                 m_questionControls.Add(controls);
                 m_questions.Add(new Question());
             }
@@ -67,7 +70,8 @@ namespace Question_Editor
                 c.optiona.TextChanged += new EventHandler(text_changed); 
                 c.optionb.TextChanged += new EventHandler(text_changed); 
                 c.optionc.TextChanged += new EventHandler(text_changed); 
-                c.optiond.TextChanged += new EventHandler(text_changed); 
+                c.optiond.TextChanged += new EventHandler(text_changed);
+                c.paste.Click += new EventHandler(paste_clicked);
             }
         }
 
@@ -79,6 +83,7 @@ namespace Question_Editor
         struct QuestionControls {
             public Label label;
             public RichTextBox question, optiona, optionb, optionc, optiond;
+            public Button paste;
         }
 
         [Serializable]
@@ -169,6 +174,66 @@ namespace Question_Editor
                 m_questions[i + index].optionc = sender.Rtf;
             else if (type == "od")
                 m_questions[i + index].optiond = sender.Rtf;
+        }
+
+        public void paste_clicked(object _sender, EventArgs args)
+        {
+            Button sender = (Button)_sender;
+            int index = Int32.Parse((string)sender.Tag);
+            QuestionControls controls = m_questionControls[index];
+
+            controls.question.Paste();
+
+            Match match = new Regex(@"\A\s*\d+\.\s?").Match(controls.question.Text);
+            int startid = 0;
+            if (match.Success)
+                startid = match.Index + match.Length;
+
+            match = new Regex(@"\s*a\)\s?").Match(controls.question.Text, startid);
+            if (!match.Success)
+                return;
+            int id = match.Index + match.Length;
+            controls.question.Select(startid, id - startid - match.Length);
+            string question = controls.question.SelectedRtf;
+
+            match = new Regex(@"b\)\s?").Match(controls.question.Text, id);
+            if (!match.Success)
+                return;
+            int nid = match.Index + match.Length;
+            controls.question.Select(id, nid - id - match.Length);
+            controls.optiona.Rtf = controls.question.SelectedRtf;
+
+            id = nid;
+            match = new Regex(@"c\)\s?").Match(controls.question.Text, id);
+            if (!match.Success)
+                return;
+            nid = match.Index + match.Length;
+            controls.question.Select(id, nid - id - match.Length);
+            controls.optionb.Rtf = controls.question.SelectedRtf;
+
+            id = nid;
+            match = new Regex(@"d\)\s?").Match(controls.question.Text, id);
+            if (!match.Success)
+                return;
+            nid = match.Index + match.Length;
+            controls.question.Select(id, nid - id - match.Length);
+            controls.optionc.Rtf = controls.question.SelectedRtf;
+
+            id = nid;
+            match = new Regex(@"(?m)^\s*\d+\.\s?").Match(controls.question.Text, id);
+            String remaining = "";
+            if (match.Success)
+            {
+                nid = match.Index;
+                controls.question.Select(nid, controls.question.Text.Length);
+                remaining = controls.question.SelectedRtf;
+            }
+            else
+                nid = controls.question.Text.Length;
+            controls.question.Select(id, nid - id);
+            controls.optiond.Rtf = controls.question.SelectedRtf;
+
+            controls.question.Rtf = question;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)

@@ -47,6 +47,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_paste = new System.Windows.Forms.Button();
             this.pnl_holder.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -55,6 +56,7 @@
             // pnl_holder
             // 
             this.pnl_holder.AutoScroll = true;
+            this.pnl_holder.Controls.Add(this.btn_paste);
             this.pnl_holder.Controls.Add(this.lbl_qn1);
             this.pnl_holder.Controls.Add(this.rtb_question1);
             this.pnl_holder.Controls.Add(this.rtb_optiona1);
@@ -199,21 +201,21 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -228,9 +230,20 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // btn_paste
+            // 
+            this.btn_paste.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_paste.Location = new System.Drawing.Point(811, 19);
+            this.btn_paste.Name = "btn_paste";
+            this.btn_paste.Size = new System.Drawing.Size(77, 50);
+            this.btn_paste.TabIndex = 1;
+            this.btn_paste.Tag = "0";
+            this.btn_paste.Text = "Smart Paste";
+            this.btn_paste.UseVisualStyleBackColor = true;
             // 
             // QuestionEditor
             // 
@@ -276,6 +289,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button btn_paste;
     }
 }
 
