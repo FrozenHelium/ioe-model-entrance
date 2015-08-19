@@ -34,6 +34,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>modelIoE.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,6 +56,12 @@
     <Compile Include="AboutQuestionEditor.Designer.cs">
       <DependentUpon>AboutQuestionEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPassageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPassageDialog.Designer.cs">
+      <DependentUpon>AddPassageDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +78,9 @@
     </Compile>
     <EmbeddedResource Include="AboutQuestionEditor.resx">
       <DependentUpon>AboutQuestionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPassageDialog.resx">
+      <DependentUpon>AddPassageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,6 +123,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\underline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="modelIoE.ico" />
+    <None Include="Resources\file_delete.png" />
+    <None Include="Resources\file_add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

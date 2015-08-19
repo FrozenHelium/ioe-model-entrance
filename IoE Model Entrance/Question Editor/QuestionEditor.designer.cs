@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionEditor));
             this.pnl_holder = new System.Windows.Forms.Panel();
+            this.btn_remove = new System.Windows.Forms.Button();
+            this.btn_insert = new System.Windows.Forms.Button();
             this.btn_paste = new System.Windows.Forms.Button();
             this.lbl_qn1 = new System.Windows.Forms.Label();
             this.rtb_question1 = new System.Windows.Forms.RichTextBox();
@@ -37,19 +39,20 @@
             this.rtb_optionb1 = new System.Windows.Forms.RichTextBox();
             this.rtb_optionc1 = new System.Windows.Forms.RichTextBox();
             this.rtb_optiond1 = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnl_bottom = new System.Windows.Forms.Panel();
+            this.btn_insertPassage = new System.Windows.Forms.Button();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolBar = new System.Windows.Forms.ToolStrip();
             this.tbtn_bold = new System.Windows.Forms.ToolStripButton();
             this.tbtn_italic = new System.Windows.Forms.ToolStripButton();
             this.tbtn_underline = new System.Windows.Forms.ToolStripButton();
@@ -60,14 +63,16 @@
             this.tbtn_incr = new System.Windows.Forms.ToolStripButton();
             this.tbtn_decr = new System.Windows.Forms.ToolStripButton();
             this.pnl_holder.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.pnl_bottom.SuspendLayout();
+            this.mainMenu.SuspendLayout();
+            this.toolBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_holder
             // 
             this.pnl_holder.AutoScroll = true;
+            this.pnl_holder.Controls.Add(this.btn_remove);
+            this.pnl_holder.Controls.Add(this.btn_insert);
             this.pnl_holder.Controls.Add(this.btn_paste);
             this.pnl_holder.Controls.Add(this.lbl_qn1);
             this.pnl_holder.Controls.Add(this.rtb_question1);
@@ -81,15 +86,36 @@
             this.pnl_holder.Size = new System.Drawing.Size(900, 401);
             this.pnl_holder.TabIndex = 0;
             // 
+            // btn_remove
+            // 
+            this.btn_remove.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_remove.Image = global::Question_Editor.Properties.Resources.file_delete;
+            this.btn_remove.Location = new System.Drawing.Point(810, 145);
+            this.btn_remove.Name = "btn_remove";
+            this.btn_remove.Size = new System.Drawing.Size(48, 48);
+            this.btn_remove.TabIndex = 3;
+            this.btn_remove.UseVisualStyleBackColor = true;
+            // 
+            // btn_insert
+            // 
+            this.btn_insert.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_insert.Image = global::Question_Editor.Properties.Resources.file_add;
+            this.btn_insert.Location = new System.Drawing.Point(810, 80);
+            this.btn_insert.Name = "btn_insert";
+            this.btn_insert.Size = new System.Drawing.Size(48, 48);
+            this.btn_insert.TabIndex = 2;
+            this.btn_insert.UseVisualStyleBackColor = true;
+            // 
             // btn_paste
             // 
             this.btn_paste.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_paste.Location = new System.Drawing.Point(811, 19);
+            this.btn_paste.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_paste.Image = global::Question_Editor.Properties.Resources.paste;
+            this.btn_paste.Location = new System.Drawing.Point(810, 15);
             this.btn_paste.Name = "btn_paste";
-            this.btn_paste.Size = new System.Drawing.Size(77, 50);
+            this.btn_paste.Size = new System.Drawing.Size(48, 48);
             this.btn_paste.TabIndex = 1;
             this.btn_paste.Tag = "0";
-            this.btn_paste.Text = "Smart Paste";
             this.btn_paste.UseVisualStyleBackColor = true;
             // 
             // lbl_qn1
@@ -157,20 +183,32 @@
             this.rtb_optiond1.Tag = "od0";
             this.rtb_optiond1.Text = "";
             // 
-            // panel1
+            // pnl_bottom
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Controls.Add(this.btn_prev);
-            this.panel1.Controls.Add(this.btn_next);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 450);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(900, 50);
-            this.panel1.TabIndex = 1;
+            this.pnl_bottom.BackColor = System.Drawing.Color.LightGray;
+            this.pnl_bottom.Controls.Add(this.btn_insertPassage);
+            this.pnl_bottom.Controls.Add(this.btn_prev);
+            this.pnl_bottom.Controls.Add(this.btn_next);
+            this.pnl_bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_bottom.Location = new System.Drawing.Point(0, 450);
+            this.pnl_bottom.Name = "pnl_bottom";
+            this.pnl_bottom.Size = new System.Drawing.Size(900, 50);
+            this.pnl_bottom.TabIndex = 1;
+            // 
+            // btn_insertPassage
+            // 
+            this.btn_insertPassage.Location = new System.Drawing.Point(37, 10);
+            this.btn_insertPassage.Name = "btn_insertPassage";
+            this.btn_insertPassage.Size = new System.Drawing.Size(126, 29);
+            this.btn_insertPassage.TabIndex = 2;
+            this.btn_insertPassage.Text = "Insert passage ...";
+            this.btn_insertPassage.UseVisualStyleBackColor = true;
+            this.btn_insertPassage.Click += new System.EventHandler(this.btn_insertPassage_Click);
             // 
             // btn_prev
             // 
-            this.btn_prev.Location = new System.Drawing.Point(50, 10);
+            this.btn_prev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_prev.Location = new System.Drawing.Point(620, 10);
             this.btn_prev.Name = "btn_prev";
             this.btn_prev.Size = new System.Drawing.Size(100, 30);
             this.btn_prev.TabIndex = 1;
@@ -189,26 +227,26 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
-            this.openFileDialog1.DefaultExt = "qset";
-            this.openFileDialog1.Filter = "Question set file|*.qset";
+            this.openFileDialog.DefaultExt = "qset";
+            this.openFileDialog.Filter = "Question set file|*.qset";
             // 
-            // saveFileDialog1
+            // saveFileDialog
             // 
-            this.saveFileDialog1.DefaultExt = "qset";
-            this.saveFileDialog1.Filter = "Question set file|*.qset";
+            this.saveFileDialog.DefaultExt = "qset";
+            this.saveFileDialog.Filter = "Question set file|*.qset";
             // 
-            // menuStrip1
+            // mainMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(900, 24);
+            this.mainMenu.TabIndex = 3;
+            this.mainMenu.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -256,9 +294,9 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // toolStrip1
+            // toolBar
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbtn_bold,
             this.tbtn_italic,
             this.tbtn_underline,
@@ -268,11 +306,11 @@
             this.toolStripSeparator2,
             this.tbtn_incr,
             this.tbtn_decr});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(900, 25);
-            this.toolStrip1.TabIndex = 4;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolBar.Location = new System.Drawing.Point(0, 24);
+            this.toolBar.Name = "toolBar";
+            this.toolBar.Size = new System.Drawing.Size(900, 25);
+            this.toolBar.TabIndex = 4;
+            this.toolBar.Text = "toolStrip1";
             // 
             // tbtn_bold
             // 
@@ -365,21 +403,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.pnl_holder);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.toolBar);
+            this.Controls.Add(this.pnl_bottom);
+            this.Controls.Add(this.mainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(900, 400);
             this.Name = "QuestionEditor";
             this.Text = "IoE Model Entrance - Question Editor";
             this.Load += new System.EventHandler(this.QuestionsEditor_Load);
             this.pnl_holder.ResumeLayout(false);
             this.pnl_holder.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.pnl_bottom.ResumeLayout(false);
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
+            this.toolBar.ResumeLayout(false);
+            this.toolBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,19 +433,19 @@
         private System.Windows.Forms.RichTextBox rtb_optiona1;
         private System.Windows.Forms.RichTextBox rtb_question1;
         private System.Windows.Forms.RichTextBox rtb_optionc1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnl_bottom;
         private System.Windows.Forms.Button btn_prev;
         private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolBar;
         private System.Windows.Forms.ToolStripButton tbtn_bold;
         private System.Windows.Forms.ToolStripButton tbtn_italic;
         private System.Windows.Forms.ToolStripButton tbtn_underline;
@@ -417,6 +456,9 @@
         private System.Windows.Forms.ToolStripButton tbtn_incr;
         private System.Windows.Forms.ToolStripButton tbtn_decr;
         private System.Windows.Forms.Button btn_paste;
+        private System.Windows.Forms.Button btn_insertPassage;
+        private System.Windows.Forms.Button btn_insert;
+        private System.Windows.Forms.Button btn_remove;
     }
 }
 

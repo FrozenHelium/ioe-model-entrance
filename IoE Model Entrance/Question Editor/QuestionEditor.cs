@@ -100,6 +100,7 @@ namespace Question_Editor
 
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
+        private String m_passageText = "";
 
         public RichTextBox m_lastTextBox;
 
@@ -113,14 +114,20 @@ namespace Question_Editor
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     bformatter.Serialize(stream, m_questions);
                 }
+                using (System.IO.Stream stream = System.IO.File.Open(fileName + "p", System.IO.FileMode.Create))
+                {
+                    byte[] buff = Encoding.UTF8.GetBytes(m_passageText);
+                    stream.Write(buff, 0, (int)m_passageText.Length);
+                }
+                
             }
             catch(Exception e)
             {
                 Cursor.Current = Cursors.Default;
-                MessageBox.Show("failed to save the file \"" + fileName + "\"\n\r"+e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("failed to save the file \"" + fileName + "\"\n\r"+e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Cursor.Current = Cursors.Default;
-            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("The question set was successfuly saved to \""+fileName+"\"", "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void LoadQuestions(String fileName)
@@ -132,6 +139,12 @@ namespace Question_Editor
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     m_questions = (List<Question>)bformatter.Deserialize(stream);
+                }
+                using (System.IO.Stream stream = System.IO.File.Open(fileName+"p", System.IO.FileMode.Open))
+                {
+                    byte[] buff = new byte[stream.Length];
+                    stream.Read(buff, 0, (int)stream.Length);
+                    m_passageText = System.Text.Encoding.UTF8.GetString(buff);
                 }
             }
             catch (Exception e)
@@ -305,20 +318,20 @@ namespace Question_Editor
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
+            DialogResult result = openFileDialog.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK)
             {
-                string fileName = openFileDialog1.FileName;
+                string fileName = openFileDialog.FileName;
                 this.LoadQuestions(fileName);
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = saveFileDialog1.ShowDialog();
+            DialogResult result = saveFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                string fileName = saveFileDialog1.FileName;
+                string fileName = saveFileDialog.FileName;
                 this.SaveQuestions(fileName);
             }
         }
@@ -401,6 +414,12 @@ namespace Question_Editor
                 m_lastTextBox.SelectionFont.Size - 1,
                 m_lastTextBox.SelectionFont.Style);
             m_formatting = false; 
+        }
+
+        private void btn_insertPassage_Click(object sender, EventArgs e)
+        {
+            AddPassageDialog dialog = new AddPassageDialog();
+            dialog.Show();
         }
     }
 }
