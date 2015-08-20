@@ -15,10 +15,17 @@ namespace Model_Entrance
 {
     public partial class QuestionPage : Form
     {
+        private SplashScreen splash;
         public QuestionPage()
         {
             InitializeComponent();
+            splash = new SplashScreen();
+            splash.Show();
+            System.Threading.Thread.Sleep(1000);
+            splash.Close();
+            
         }
+
 
         private void QuestionsEditor_Load(object sender, EventArgs e)
         {
@@ -270,6 +277,11 @@ namespace Model_Entrance
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lbl_titleText_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

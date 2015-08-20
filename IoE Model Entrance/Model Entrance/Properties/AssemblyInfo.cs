@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Model Entrance")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Model Entrance application for IoE Entrance Examination")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FroBi")]
 [assembly: AssemblyProduct("Model Entrance")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]

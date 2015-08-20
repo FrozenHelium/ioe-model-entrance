@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionPage));
             this.pnl_holder = new System.Windows.Forms.Panel();
+            this.pnl_title = new System.Windows.Forms.Panel();
+            this.img_titleLogo = new System.Windows.Forms.PictureBox();
+            this.lbl_titleText = new System.Windows.Forms.Label();
             this.pnl_question = new System.Windows.Forms.Panel();
             this.radio_d = new System.Windows.Forms.RadioButton();
             this.radio_b = new System.Windows.Forms.RadioButton();
@@ -44,25 +48,58 @@
             this.lbl_timer = new System.Windows.Forms.Label();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
-            this.pnl_title = new System.Windows.Forms.Panel();
-            this.img_titleLogo = new System.Windows.Forms.PictureBox();
-            this.lbl_titleText = new System.Windows.Forms.Label();
             this.pnl_holder.SuspendLayout();
-            this.pnl_question.SuspendLayout();
-            this.pnl_bottom.SuspendLayout();
             this.pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
+            this.pnl_question.SuspendLayout();
+            this.pnl_bottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_holder
             // 
             this.pnl_holder.AutoScroll = true;
+            this.pnl_holder.Controls.Add(this.pnl_title);
             this.pnl_holder.Controls.Add(this.pnl_question);
             this.pnl_holder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_holder.Location = new System.Drawing.Point(0, 0);
             this.pnl_holder.Name = "pnl_holder";
             this.pnl_holder.Size = new System.Drawing.Size(900, 450);
             this.pnl_holder.TabIndex = 0;
+            // 
+            // pnl_title
+            // 
+            this.pnl_title.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnl_title.BackColor = System.Drawing.Color.White;
+            this.pnl_title.Controls.Add(this.img_titleLogo);
+            this.pnl_title.Controls.Add(this.lbl_titleText);
+            this.pnl_title.Location = new System.Drawing.Point(50, 10);
+            this.pnl_title.Name = "pnl_title";
+            this.pnl_title.Size = new System.Drawing.Size(800, 120);
+            this.pnl_title.TabIndex = 0;
+            // 
+            // img_titleLogo
+            // 
+            this.img_titleLogo.Image = global::Model_Entrance.Properties.Resources.modelIoE;
+            this.img_titleLogo.InitialImage = global::Model_Entrance.Properties.Resources.modelIoE;
+            this.img_titleLogo.Location = new System.Drawing.Point(50, 15);
+            this.img_titleLogo.Name = "img_titleLogo";
+            this.img_titleLogo.Size = new System.Drawing.Size(64, 64);
+            this.img_titleLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.img_titleLogo.TabIndex = 0;
+            this.img_titleLogo.TabStop = false;
+            // 
+            // lbl_titleText
+            // 
+            this.lbl_titleText.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_titleText.AutoSize = true;
+            this.lbl_titleText.Font = new System.Drawing.Font("Segoe UI Semibold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_titleText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(190)))), ((int)(((byte)(160)))));
+            this.lbl_titleText.Location = new System.Drawing.Point(120, 20);
+            this.lbl_titleText.Name = "lbl_titleText";
+            this.lbl_titleText.Size = new System.Drawing.Size(328, 47);
+            this.lbl_titleText.TabIndex = 0;
+            this.lbl_titleText.Text = "IoE Model Entrance";
+            this.lbl_titleText.Click += new System.EventHandler(this.lbl_titleText_Click);
             // 
             // pnl_question
             // 
@@ -250,62 +287,30 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
-            // pnl_title
-            // 
-            this.pnl_title.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnl_title.BackColor = System.Drawing.Color.White;
-            this.pnl_title.Controls.Add(this.img_titleLogo);
-            this.pnl_title.Controls.Add(this.lbl_titleText);
-            this.pnl_title.Location = new System.Drawing.Point(50, 10);
-            this.pnl_title.Name = "pnl_title";
-            this.pnl_title.Size = new System.Drawing.Size(800, 120);
-            this.pnl_title.TabIndex = 0;
-            // 
-            // img_titleLogo
-            // 
-            this.img_titleLogo.Image = global::Model_Entrance.Properties.Resources.modelIoE;
-            this.img_titleLogo.InitialImage = global::Model_Entrance.Properties.Resources.modelIoE;
-            this.img_titleLogo.Location = new System.Drawing.Point(50, 15);
-            this.img_titleLogo.Name = "img_titleLogo";
-            this.img_titleLogo.Size = new System.Drawing.Size(64, 64);
-            this.img_titleLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.img_titleLogo.TabIndex = 0;
-            this.img_titleLogo.TabStop = false;
-            // 
-            // lbl_titleText
-            // 
-            this.lbl_titleText.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbl_titleText.AutoSize = true;
-            this.lbl_titleText.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_titleText.Location = new System.Drawing.Point(120, 20);
-            this.lbl_titleText.Name = "lbl_titleText";
-            this.lbl_titleText.Size = new System.Drawing.Size(321, 47);
-            this.lbl_titleText.TabIndex = 0;
-            this.lbl_titleText.Text = "IoE Model Entrance";
-            this.lbl_titleText.ForeColor = System.Drawing.Color.FromArgb(38, 190, 160);
-            // 
             // QuestionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 500);
-            this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_holder);
             this.Controls.Add(this.pnl_bottom);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(900, 400);
             this.Name = "QuestionPage";
             this.Text = "IoE Model Entrance";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.QuestionsEditor_Load);
             this.pnl_holder.ResumeLayout(false);
             this.pnl_holder.PerformLayout();
+            this.pnl_title.ResumeLayout(false);
+            this.pnl_title.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).EndInit();
             this.pnl_question.ResumeLayout(false);
             this.pnl_question.PerformLayout();
             this.pnl_bottom.ResumeLayout(false);
             this.pnl_bottom.PerformLayout();
-            this.pnl_title.ResumeLayout(false);
-            this.pnl_title.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
