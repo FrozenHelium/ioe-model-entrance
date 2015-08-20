@@ -40,8 +40,9 @@ namespace Question_Editor
             if (m_parent != null)
             {
                 richTextBox1.Rtf = m_parent.m_passage;
-                if (m_parent.m_passage_qn >= 0)
-                    textBox1.Text = m_parent.m_passage_qn.ToString();
+                int pqn = m_parent.m_passage_qn;
+                if (pqn >= 0)
+                    textBox1.Text = pqn.ToString();
             }
         }
     }

@@ -68,6 +68,13 @@ namespace Question_Editor
                 m_questionControls.Add(controls);
                 m_questions.Add(new Question());
             }
+
+            // A little extra space at the bottom
+            Panel extra = new Panel();
+            extra.Top = shift;
+            extra.Height = 20;
+            extra.Parent = pnl_holder;
+
             RefreshQuestions();
 
             foreach (QuestionControls c in m_questionControls)
@@ -95,8 +102,6 @@ namespace Question_Editor
         private int m_totalPages = 1;
         private int m_questionsPerPage = 10;
 
-        public String m_passage = "";
-        public int m_passage_qn = -1;
 
         struct QuestionControls {
             public Label label;
@@ -111,7 +116,8 @@ namespace Question_Editor
 
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
-        private String m_passageText = "";
+        public String m_passage = "";
+        public int m_passage_qn = -1;
 
         public RichTextBox m_lastTextBox;
 
@@ -127,8 +133,8 @@ namespace Question_Editor
                 }
                 using (System.IO.Stream stream = System.IO.File.Open(fileName + "p", System.IO.FileMode.Create))
                 {
-                    byte[] buff = Encoding.UTF8.GetBytes(m_passageText);
-                    stream.Write(buff, 0, (int)m_passageText.Length);
+                    byte[] buff = Encoding.UTF8.GetBytes(m_passage);
+                    stream.Write(buff, 0, (int)m_passage.Length);
                 }
                 
             }
@@ -155,7 +161,7 @@ namespace Question_Editor
                 {
                     byte[] buff = new byte[stream.Length];
                     stream.Read(buff, 0, (int)stream.Length);
-                    m_passageText = System.Text.Encoding.UTF8.GetString(buff);
+                    m_passage = System.Text.Encoding.UTF8.GetString(buff);
                 }
             }
             catch (Exception e)
