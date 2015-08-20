@@ -28,8 +28,8 @@ namespace Question_Editor
         {
             try
             {
-                m_parent.m_passage = richTextBox1.Rtf;
-                m_parent.m_passage_qn = Int32.Parse(textBox1.Text);
+                m_parent.m_passage.passageText = richTextBox1.Rtf;
+                m_parent.m_passage.passageQuestion = Int32.Parse(textBox1.Text);
             }
             catch (Exception) { }
             this.Close();
@@ -39,8 +39,8 @@ namespace Question_Editor
         {
             if (m_parent != null)
             {
-                richTextBox1.Rtf = m_parent.m_passage;
-                int pqn = m_parent.m_passage_qn;
+                richTextBox1.Rtf = m_parent.m_passage.passageText;
+                int pqn = m_parent.m_passage.passageQuestion;
                 if (pqn >= 0)
                     textBox1.Text = pqn.ToString();
             }

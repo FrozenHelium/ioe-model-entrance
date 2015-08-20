@@ -114,10 +114,16 @@ namespace Question_Editor
             public String question="", optiona="", optionb="", optionc="", optiond="";
         }
 
+        [Serializable]
+        public class Passage
+        {
+            public int passageQuestion = -1;
+            public String passageText="";
+        }
+
         private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
-        public String m_passage = "";
-        public int m_passage_qn = -1;
+        public Passage m_passage = new Passage();
 
         public RichTextBox m_lastTextBox;
 
@@ -133,8 +139,8 @@ namespace Question_Editor
                 }
                 using (System.IO.Stream stream = System.IO.File.Open(fileName + "p", System.IO.FileMode.Create))
                 {
-                    byte[] buff = Encoding.UTF8.GetBytes(m_passage);
-                    stream.Write(buff, 0, (int)m_passage.Length);
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Serialize(stream, m_passage);
                 }
                 
             }
@@ -159,9 +165,9 @@ namespace Question_Editor
                 }
                 using (System.IO.Stream stream = System.IO.File.Open(fileName+"p", System.IO.FileMode.Open))
                 {
-                    byte[] buff = new byte[stream.Length];
-                    stream.Read(buff, 0, (int)stream.Length);
-                    m_passage = System.Text.Encoding.UTF8.GetString(buff);
+                    Passage p = new Passage();
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    m_passage = (Passage)bformatter.Deserialize(stream);
                 }
             }
             catch (Exception e)
@@ -182,6 +188,7 @@ namespace Question_Editor
                 for (int j = m_questions.Count % m_questionsPerPage; j < m_questionsPerPage; ++j)
                     m_questions.Add(new Question());
             }
+            
             int i = m_currentPage * m_questionsPerPage;
             foreach (QuestionControls qc in m_questionControls) 
             {
@@ -204,8 +211,17 @@ namespace Question_Editor
             RefreshQuestions();
         }
 
+        private bool IsAllQuestionsEmptyInCurrentPage()
+        {
+            for (int j = 0; j < m_questionsPerPage; ++j)
+                if (m_questionControls[j].question.Text != "")
+                    return true;
+            return false;
+        }
         private void btn_next_Click(object sender, EventArgs e)
         {
+            if (!IsAllQuestionsEmptyInCurrentPage())
+                return;
             m_currentPage++;
             if (m_currentPage >= m_totalPages)
             {

@@ -94,6 +94,7 @@
             this.btn_remove.Name = "btn_remove";
             this.btn_remove.Size = new System.Drawing.Size(48, 48);
             this.btn_remove.TabIndex = 3;
+            this.btn_remove.Tag = "0";
             this.btn_remove.UseVisualStyleBackColor = true;
             // 
             // btn_insert
@@ -104,6 +105,7 @@
             this.btn_insert.Name = "btn_insert";
             this.btn_insert.Size = new System.Drawing.Size(48, 48);
             this.btn_insert.TabIndex = 2;
+            this.btn_insert.Tag = "0";
             this.btn_insert.UseVisualStyleBackColor = true;
             // 
             // btn_paste
