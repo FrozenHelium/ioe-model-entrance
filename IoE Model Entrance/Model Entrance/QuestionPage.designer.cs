@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionPage));
             this.pnl_holder = new System.Windows.Forms.Panel();
             this.pnl_title = new System.Windows.Forms.Panel();
@@ -45,14 +46,22 @@
             this.rtb_optionc1 = new System.Windows.Forms.RichTextBox();
             this.rtb_optiond1 = new System.Windows.Forms.RichTextBox();
             this.pnl_bottom = new System.Windows.Forms.Panel();
+            this.btn_menu = new System.Windows.Forms.Button();
             this.lbl_timer = new System.Windows.Forms.Label();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
+            this.ctx_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menu_item_change_set = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_holder.SuspendLayout();
             this.pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
             this.pnl_question.SuspendLayout();
             this.pnl_bottom.SuspendLayout();
+            this.ctx_menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_holder
@@ -99,7 +108,6 @@
             this.lbl_titleText.Size = new System.Drawing.Size(328, 47);
             this.lbl_titleText.TabIndex = 0;
             this.lbl_titleText.Text = "IoE Model Entrance";
-            this.lbl_titleText.Click += new System.EventHandler(this.lbl_titleText_Click);
             // 
             // pnl_question
             // 
@@ -246,6 +254,7 @@
             // 
             // pnl_bottom
             // 
+            this.pnl_bottom.Controls.Add(this.btn_menu);
             this.pnl_bottom.Controls.Add(this.lbl_timer);
             this.pnl_bottom.Controls.Add(this.btn_prev);
             this.pnl_bottom.Controls.Add(this.btn_next);
@@ -255,11 +264,21 @@
             this.pnl_bottom.Size = new System.Drawing.Size(900, 50);
             this.pnl_bottom.TabIndex = 1;
             // 
+            // btn_menu
+            // 
+            this.btn_menu.Location = new System.Drawing.Point(28, 14);
+            this.btn_menu.Name = "btn_menu";
+            this.btn_menu.Size = new System.Drawing.Size(40, 25);
+            this.btn_menu.TabIndex = 3;
+            this.btn_menu.Text = "...";
+            this.btn_menu.UseVisualStyleBackColor = true;
+            this.btn_menu.Click += new System.EventHandler(this.btn_menu_Click);
+            // 
             // lbl_timer
             // 
             this.lbl_timer.AutoSize = true;
             this.lbl_timer.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_timer.Location = new System.Drawing.Point(50, 10);
+            this.lbl_timer.Location = new System.Drawing.Point(95, 10);
             this.lbl_timer.Name = "lbl_timer";
             this.lbl_timer.Size = new System.Drawing.Size(222, 30);
             this.lbl_timer.TabIndex = 2;
@@ -287,6 +306,51 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
+            // ctx_menu
+            // 
+            this.ctx_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_item_change_set,
+            this.helpToolStripMenuItem,
+            this.aboutToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.ctx_menu.Name = "ctx_menu";
+            this.ctx_menu.Size = new System.Drawing.Size(153, 114);
+            // 
+            // menu_item_change_set
+            // 
+            this.menu_item_change_set.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.randomToolStripMenuItem});
+            this.menu_item_change_set.Name = "menu_item_change_set";
+            this.menu_item_change_set.Size = new System.Drawing.Size(152, 22);
+            this.menu_item_change_set.Text = "Change Set";
+            // 
+            // randomToolStripMenuItem
+            // 
+            this.randomToolStripMenuItem.Name = "randomToolStripMenuItem";
+            this.randomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.randomToolStripMenuItem.Tag = "random";
+            this.randomToolStripMenuItem.Text = "Random";
+            this.randomToolStripMenuItem.Click += new System.EventHandler(this.set_changed);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
             // QuestionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,6 +375,7 @@
             this.pnl_question.PerformLayout();
             this.pnl_bottom.ResumeLayout(false);
             this.pnl_bottom.PerformLayout();
+            this.ctx_menu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -336,6 +401,13 @@
         private System.Windows.Forms.Label lbl_timer;
         private System.Windows.Forms.PictureBox img_titleLogo;
         private System.Windows.Forms.Label lbl_titleText;
+        private System.Windows.Forms.Button btn_menu;
+        private System.Windows.Forms.ContextMenuStrip ctx_menu;
+        private System.Windows.Forms.ToolStripMenuItem menu_item_change_set;
+        private System.Windows.Forms.ToolStripMenuItem randomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

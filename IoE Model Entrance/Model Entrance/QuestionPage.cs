@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -113,9 +114,26 @@ namespace Model_Entrance
             m_timer.SynchronizingObject = this;
             m_timer.Start();
 
+            LoadSets();
 
-            //this.LoadQuestions("E:\\abc.qset");
+            for (int i = 0; i < m_sets.Length; ++i )
+            {
+                ToolStripItem item = menu_item_change_set.DropDownItems.Add("Set " + (i+1));
+                item.Tag = i;
+                item.Click += new EventHandler(set_changed);
+            }
+
+            if (m_sets.Length > 0)
+                set_changed(randomToolStripMenuItem, null);
         }
+
+        private void LoadSets()
+        {
+            m_sets = Directory.GetFiles(@"sets", "*.qset", SearchOption.AllDirectories);
+        }
+
+        private String[] m_sets;
+        private int m_current_set = -1;
 
         private int seconds = 0;
         private int target_seconds = 3 * 60 * 60; // 3 hrs
@@ -231,6 +249,7 @@ namespace Model_Entrance
                     qc.optionb.Rtf = q.optionb;
                     qc.optionc.Rtf = q.optionc;
                     qc.optiond.Rtf = q.optiond;
+                    qc.panel.Show();
                 }
                 else
                     qc.panel.Hide();
@@ -284,10 +303,42 @@ namespace Model_Entrance
             this.Close();
         }
 
-        private void lbl_titleText_Click(object sender, EventArgs e)
+        private void btn_menu_Click(object sender, EventArgs e)
         {
-
+            if (!ctx_menu.Visible)
+                ctx_menu.Show(btn_menu, 5, 5);
+            else
+                ctx_menu.Hide();
         }
+
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void set_changed(object _sender, EventArgs e)
+        {
+            if (m_sets == null || m_sets.Length == 0)
+                return;
+            ToolStripItem sender = (ToolStripItem)_sender;
+            String tag = sender.Tag.ToString();
+            int new_set;
+            if (tag == "random")
+            {
+                Random random = new Random();
+                do
+                {
+                    new_set = random.Next(0, m_sets.Length);
+                } while (new_set == m_current_set);
+            }
+            else
+                new_set = Int32.Parse(tag);
+            if (new_set == m_current_set)
+                return;
+            LoadQuestions(m_sets[new_set]);
+            m_current_set = new_set;
+        }
+
 
     }
 
