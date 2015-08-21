@@ -34,7 +34,6 @@
             this.lbl_groupB = new System.Windows.Forms.Label();
             this.lbl_groupA = new System.Windows.Forms.Label();
             this.pnl_title = new System.Windows.Forms.Panel();
-            this.img_titleLogo = new System.Windows.Forms.PictureBox();
             this.lbl_titleText = new System.Windows.Forms.Label();
             this.pnl_question = new System.Windows.Forms.Panel();
             this.radio_d = new System.Windows.Forms.RadioButton();
@@ -55,15 +54,15 @@
             this.ctx_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_item_change_set = new System.Windows.Forms.ToolStripMenuItem();
             this.randomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.img_titleLogo = new System.Windows.Forms.PictureBox();
             this.pnl_holder.SuspendLayout();
             this.pnl_title.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
             this.pnl_question.SuspendLayout();
             this.pnl_bottom.SuspendLayout();
             this.ctx_menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_holder
@@ -115,17 +114,6 @@
             this.pnl_title.Size = new System.Drawing.Size(800, 120);
             this.pnl_title.TabIndex = 0;
             this.pnl_title.Visible = false;
-            // 
-            // img_titleLogo
-            // 
-            this.img_titleLogo.Image = global::Model_Entrance.Properties.Resources.modelIoE;
-            this.img_titleLogo.InitialImage = global::Model_Entrance.Properties.Resources.modelIoE;
-            this.img_titleLogo.Location = new System.Drawing.Point(50, 15);
-            this.img_titleLogo.Name = "img_titleLogo";
-            this.img_titleLogo.Size = new System.Drawing.Size(64, 64);
-            this.img_titleLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.img_titleLogo.TabIndex = 0;
-            this.img_titleLogo.TabStop = false;
             // 
             // lbl_titleText
             // 
@@ -306,11 +294,13 @@
             // 
             // btn_menu
             // 
+            this.btn_menu.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_menu.Location = new System.Drawing.Point(28, 14);
             this.btn_menu.Name = "btn_menu";
             this.btn_menu.Size = new System.Drawing.Size(40, 25);
             this.btn_menu.TabIndex = 3;
-            this.btn_menu.Text = "...";
+            this.btn_menu.Text = ". . .";
+            this.btn_menu.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn_menu.UseVisualStyleBackColor = true;
             this.btn_menu.Click += new System.EventHandler(this.btn_menu_Click);
             // 
@@ -350,47 +340,51 @@
             // 
             this.ctx_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_item_change_set,
-            this.helpToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.ctx_menu.Name = "ctx_menu";
-            this.ctx_menu.Size = new System.Drawing.Size(153, 114);
+            this.ctx_menu.Size = new System.Drawing.Size(135, 70);
             // 
             // menu_item_change_set
             // 
             this.menu_item_change_set.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.randomToolStripMenuItem});
             this.menu_item_change_set.Name = "menu_item_change_set";
-            this.menu_item_change_set.Size = new System.Drawing.Size(152, 22);
+            this.menu_item_change_set.Size = new System.Drawing.Size(134, 22);
             this.menu_item_change_set.Text = "Change Set";
             // 
             // randomToolStripMenuItem
             // 
             this.randomToolStripMenuItem.Name = "randomToolStripMenuItem";
-            this.randomToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.randomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.randomToolStripMenuItem.Tag = "random";
             this.randomToolStripMenuItem.Text = "Random";
             this.randomToolStripMenuItem.Click += new System.EventHandler(this.set_changed);
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
+            // 
+            // img_titleLogo
+            // 
+            this.img_titleLogo.Image = global::Model_Entrance.Properties.Resources.modelIoE;
+            this.img_titleLogo.InitialImage = global::Model_Entrance.Properties.Resources.modelIoE;
+            this.img_titleLogo.Location = new System.Drawing.Point(50, 15);
+            this.img_titleLogo.Name = "img_titleLogo";
+            this.img_titleLogo.Size = new System.Drawing.Size(64, 64);
+            this.img_titleLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.img_titleLogo.TabIndex = 0;
+            this.img_titleLogo.TabStop = false;
             // 
             // QuestionPage
             // 
@@ -411,12 +405,12 @@
             this.pnl_holder.PerformLayout();
             this.pnl_title.ResumeLayout(false);
             this.pnl_title.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).EndInit();
             this.pnl_question.ResumeLayout(false);
             this.pnl_question.PerformLayout();
             this.pnl_bottom.ResumeLayout(false);
             this.pnl_bottom.PerformLayout();
             this.ctx_menu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,7 +440,6 @@
         private System.Windows.Forms.ContextMenuStrip ctx_menu;
         private System.Windows.Forms.ToolStripMenuItem menu_item_change_set;
         private System.Windows.Forms.ToolStripMenuItem randomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label lbl_groupB;
