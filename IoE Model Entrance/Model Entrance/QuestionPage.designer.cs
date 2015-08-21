@@ -145,6 +145,7 @@
             this.radio_d.Size = new System.Drawing.Size(14, 13);
             this.radio_d.TabIndex = 1;
             this.radio_d.TabStop = true;
+            this.radio_d.Tag = "0";
             this.radio_d.UseVisualStyleBackColor = true;
             // 
             // radio_b
@@ -156,6 +157,7 @@
             this.radio_b.Size = new System.Drawing.Size(14, 13);
             this.radio_b.TabIndex = 1;
             this.radio_b.TabStop = true;
+            this.radio_b.Tag = "0";
             this.radio_b.UseVisualStyleBackColor = true;
             // 
             // radio_c
@@ -167,6 +169,7 @@
             this.radio_c.Size = new System.Drawing.Size(14, 13);
             this.radio_c.TabIndex = 1;
             this.radio_c.TabStop = true;
+            this.radio_c.Tag = "0";
             this.radio_c.UseVisualStyleBackColor = true;
             // 
             // radio_a
@@ -178,6 +181,7 @@
             this.radio_a.Size = new System.Drawing.Size(14, 13);
             this.radio_a.TabIndex = 1;
             this.radio_a.TabStop = true;
+            this.radio_a.Tag = "0";
             this.radio_a.UseVisualStyleBackColor = true;
             // 
             // lbl_qn1
@@ -198,6 +202,7 @@
             this.rtb_question1.Location = new System.Drawing.Point(50, 5);
             this.rtb_question1.Name = "rtb_question1";
             this.rtb_question1.ReadOnly = true;
+            this.rtb_question1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.rtb_question1.Size = new System.Drawing.Size(700, 150);
             this.rtb_question1.TabIndex = 0;
             this.rtb_question1.Tag = "qn0";
@@ -212,6 +217,7 @@
             this.rtb_optiona1.Location = new System.Drawing.Point(110, 180);
             this.rtb_optiona1.Name = "rtb_optiona1";
             this.rtb_optiona1.ReadOnly = true;
+            this.rtb_optiona1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.rtb_optiona1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optiona1.TabIndex = 0;
             this.rtb_optiona1.Tag = "oa0";
@@ -226,6 +232,7 @@
             this.rtb_optionb1.Location = new System.Drawing.Point(470, 180);
             this.rtb_optionb1.Name = "rtb_optionb1";
             this.rtb_optionb1.ReadOnly = true;
+            this.rtb_optionb1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.rtb_optionb1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optionb1.TabIndex = 0;
             this.rtb_optionb1.Tag = "ob0";
@@ -240,6 +247,7 @@
             this.rtb_optionc1.Location = new System.Drawing.Point(110, 240);
             this.rtb_optionc1.Name = "rtb_optionc1";
             this.rtb_optionc1.ReadOnly = true;
+            this.rtb_optionc1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.rtb_optionc1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optionc1.TabIndex = 0;
             this.rtb_optionc1.Tag = "oc0";
@@ -254,6 +262,7 @@
             this.rtb_optiond1.Location = new System.Drawing.Point(470, 240);
             this.rtb_optiond1.Name = "rtb_optiond1";
             this.rtb_optiond1.ReadOnly = true;
+            this.rtb_optiond1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.rtb_optiond1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optiond1.TabIndex = 0;
             this.rtb_optiond1.Tag = "od0";

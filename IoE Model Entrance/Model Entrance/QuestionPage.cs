@@ -40,7 +40,6 @@ namespace Model_Entrance
             controls.selectc = radio_c; controls.selectd = radio_d;
             controls.panel = pnl_question;
             m_questionControls.Add(controls);
-            m_questions.Add(new Question());
 
             pnl_passage = pnl_question.Clone();
             rtb_passage = rtb_question1.Clone();
@@ -85,8 +84,9 @@ namespace Model_Entrance
                 controls.optionc.Tag = "oc" + i;
                 controls.optiond.Tag = "od" + i;
 
+                controls.selecta.Tag = controls.selectb.Tag = controls.selectc.Tag = controls.selectd.Tag = i.ToString();
+
                 m_questionControls.Add(controls);
-                m_questions.Add(new Question());
             }
 
             rtb_passage.ContentsResized += new ContentsResizedEventHandler(content_resized); 
@@ -126,6 +126,18 @@ namespace Model_Entrance
                     c.selectd.Focus();
                     c.selectd.Checked = true;
                 });
+
+                EventHandler onchecked = new EventHandler(delegate(Object o, EventArgs a)
+                {
+                    RadioButton r = (RadioButton)o;
+                    String tag = r.Tag.ToString();
+                    int qn = Int32.Parse(tag);
+                    m_answers[m_currentPage * m_questionsPerPage + qn] = m_questionControls[qn].GetSelected();
+                });
+                c.selecta.CheckedChanged += onchecked;
+                c.selectb.CheckedChanged += onchecked;
+                c.selectc.CheckedChanged += onchecked;
+                c.selectd.CheckedChanged += onchecked;
             }
 
             RefreshQuestions();
@@ -209,6 +221,32 @@ namespace Model_Entrance
                     selecta.Parent = selectb.Parent = selectc.Parent = selectd.Parent =
                     panel;
             }
+
+            public int GetSelected()
+            {
+                if (selecta.Checked)
+                    return 0;
+                else if (selectb.Checked)
+                    return 1;
+                else if (selectc.Checked)
+                    return 2;
+                else if (selectd.Checked)
+                    return 3;
+                return -1;
+            }
+
+            public void SetChecked(int index)
+            {
+                selecta.Checked = selectb.Checked = selectc.Checked = selectd.Checked = false;
+                if (index == 0)
+                    selecta.Checked = true;
+                else if (index == 1)
+                    selectb.Checked = true;
+                else if (index == 2)
+                    selectc.Checked = true;
+                else if (index == 3)
+                    selectd.Checked = true;
+            }
         }
 
         private static String GetRtf(String str)
@@ -227,6 +265,39 @@ namespace Model_Entrance
         private class Question
         {
             public String question = GetRtf("hello"), optiona = "", optionb = "", optionc = "", optiond = "";
+            public String GetOption(int id)
+            {
+                switch(id)
+                {
+                    case 0:
+                        return optiona;
+                    case 1:
+                        return optionb;
+                    case 2:
+                        return optionc;
+                    case 3:
+                        return optiond;
+                }
+                return "";
+            }
+            public void SetOption(int id, String str)
+            {
+                switch (id)
+                {
+                    case 0:
+                        optiona = str;
+                        break;
+                    case 1:
+                        optionb = str;
+                        break;
+                    case 2:
+                        optionc = str;
+                        break;
+                    case 3:
+                        optiond = str;
+                        break;
+                }
+            }
         }
 
         [Serializable]
@@ -238,6 +309,8 @@ namespace Model_Entrance
 
         private List<QuestionControls> m_questionControls = new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
+        private List<int> m_correctAnswers = new List<int>();
+        private List<int> m_answers = new List<int>();
         public Passage m_passage = new Passage();
 
         public RichTextBox m_lastTextBox;
@@ -267,10 +340,41 @@ namespace Model_Entrance
                 MessageBox.Show("failed to load the file \"" + fileName + "\"\n\r" + e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+            m_correctAnswers.Clear();
+            m_answers.Clear();
+            Random random = new Random();
+            foreach (Question q in m_questions)
+            {
+                if (GetTextFromRtf(q.question) == "")
+                    continue;
+                int answer = 0;
+                for (int i = 0; i < 5; ++i)
+                {
+                    // Get two options and swap them
+                    int one = random.Next(0, 4);
+                    int two = random.Next(0, 4);
+                    if (one != two)
+                    {
+                        if (one == answer)
+                            answer = two;
+                        else if (two == answer)
+                            answer = one;
+                        String temp;
+                        temp = q.GetOption(one);
+                        q.SetOption(one, q.GetOption(two));
+                        q.SetOption(two, temp);
+                    }
+                }
+                m_correctAnswers.Add(answer);
+                m_answers.Add(-1);
+            }
+
             m_currentPage = 0;
             m_totalPages = m_questions.Count / m_questionsPerPage;
             this.RefreshQuestions();
             Cursor.Current = Cursors.Default;
+
         }
 
         public void RefreshQuestions()
@@ -292,6 +396,8 @@ namespace Model_Entrance
                     qc.optionc.Rtf = q.optionc;
                     qc.optiond.Rtf = q.optiond;
                     qc.panel.Show();
+
+                    qc.SetChecked(m_answers[i]);
                 }
                 else
                     qc.panel.Hide();
@@ -379,16 +485,23 @@ namespace Model_Entrance
             RefreshControls();
         }
 
+        private int CheckAnswers()
+        {
+            int score = 0;
+            for (int i=0; i<m_answers.Count; ++i)
+                if (m_answers[i] == m_correctAnswers[i])
+                    score++;
+            return score;
+        }
         private void Submit()
         {
-            DialogResult dialogResult = MessageBox.Show("You have ... questions unanswered !", "Are you sure you want to submit ?", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Once submitted, you cannot edit your answers !", "Are you sure ?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //do something
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
+                MessageBox.Show("You answered " + CheckAnswers() + " out of " + m_correctAnswers.Count + " correctly !");
+
+                if (m_sets.Length > 0)
+                    set_changed(randomToolStripMenuItem, null); 
             }
         }
 
