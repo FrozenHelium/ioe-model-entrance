@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,17 +20,16 @@ namespace Model_Entrance
         private SplashScreen splash;
         public QuestionPage()
         {
-            InitializeComponent();
             splash = new SplashScreen();
             splash.Show();
-            System.Threading.Thread.Sleep(1000);
+            InitializeComponent();
             splash.Close();
-            
         }
 
 
         private void QuestionsEditor_Load(object sender, EventArgs e)
         {
+            SuspendDrawing(this);
             QuestionControls controls = new QuestionControls();
             controls.label = lbl_qn1; controls.question = rtb_question1;
             controls.optiona = rtb_optiona1; controls.optionb = rtb_optionb1; 
@@ -39,6 +39,8 @@ namespace Model_Entrance
             controls.panel = pnl_question;
             m_questionControls.Add(controls);
             m_questions.Add(new Question());
+
+            pnl_title.Visible = pnl_question.Visible = true;
 
             for (int i = 1; i < m_questionsPerPage; ++i)
             {
@@ -125,6 +127,22 @@ namespace Model_Entrance
 
             if (m_sets.Length > 0)
                 set_changed(randomToolStripMenuItem, null);
+
+
+            pnl_holder.Hide();
+            pnl_bottom.Hide();
+            m_loginscreen = new FormLogIn(this);
+            m_loginscreen.TopLevel = false;
+            m_loginscreen.Parent = this;
+            m_loginscreen.Show();
+            ResumeDrawing(this);
+        }
+
+        public void SignIn(String username, String password)
+        {
+            m_loginscreen.Close();
+            pnl_holder.Show();
+            pnl_bottom.Show();
         }
 
         private void LoadSets()
@@ -132,6 +150,7 @@ namespace Model_Entrance
             m_sets = Directory.GetFiles(@"sets", "*.qset", SearchOption.AllDirectories);
         }
 
+        private FormLogIn m_loginscreen;
         private String[] m_sets;
         private int m_current_set = -1;
 
@@ -339,7 +358,21 @@ namespace Model_Entrance
             m_current_set = new_set;
         }
 
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
 
+        private const int WM_SETREDRAW = 11;
+
+        public static void SuspendDrawing(Control parent)
+        {
+            SendMessage(parent.Handle, WM_SETREDRAW, false, 0);
+        }
+
+        public static void ResumeDrawing(Control parent)
+        {
+            SendMessage(parent.Handle, WM_SETREDRAW, true, 0);
+            parent.Refresh();
+        }
     }
 
     sealed class ModelQuestionBinder : SerializationBinder

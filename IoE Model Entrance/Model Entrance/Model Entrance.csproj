@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlExtensions.cs" />
-    <Compile Include="FormLogIn.cs" />
+    <Compile Include="FormLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLogIn.Designer.cs">
       <DependentUpon>FormLogIn.cs</DependentUpon>
     </Compile>
@@ -58,7 +60,9 @@
     <Compile Include="QuestionPage.designer.cs">
       <DependentUpon>QuestionPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="SplashScreen.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
