@@ -26,7 +26,7 @@ namespace Model_Entrance
             splash.Close();
         }
 
-        private int GroupSeparatorQuestions = 12;
+        private int GroupSeparatorQuestions = 60;
         private String PassageTitle = "Read the following passage carefully and answer the following questions.";
 
         private void QuestionsEditor_Load(object sender, EventArgs e)
@@ -193,7 +193,7 @@ namespace Model_Entrance
         private int m_current_set = -1;
 
         private int seconds = 0;
-        private int target_seconds = 3*60*60; // 3 hrs
+        private int target_seconds = 2*60*60; // 2 hrs
         public void time_elapsed(object sender, System.Timers.ElapsedEventArgs args)
         {
             seconds++;
@@ -201,7 +201,6 @@ namespace Model_Entrance
 
             if (seconds == target_seconds)
             {
-                m_timer.Stop();
                 MessageBox.Show("Time Up!!!");
                 Submit();
             }
@@ -499,35 +498,47 @@ namespace Model_Entrance
         }
 
         private int correctGroupA, correctGroupB;
+        private int total;
         private int CheckAnswers()
         {
             int score = 0;
             correctGroupA = 0;
             correctGroupB = 0;
+            total = 0;
             for (int i=0; i<m_answers.Count; ++i)
-                if (m_answers[i] == m_correctAnswers[i])
+                if (i >= GroupSeparatorQuestions)
                 {
-                    if (i >= GroupSeparatorQuestions)
+                    if (m_answers[i] == m_correctAnswers[i])
                         correctGroupB++;
-                    else
+                    total += 2;
+                }
+                else
+                {
+                    if (m_answers[i] == m_correctAnswers[i])
                         correctGroupA++;
+                    total++;
                 }
             score = correctGroupA + correctGroupB * 2;
             return score;
         }
         private void Submit()
         {
+            m_timer.Stop();
             int score = CheckAnswers();
-            String message = "You answered " + (correctGroupA + correctGroupB) + " out of " + m_correctAnswers.Count + " correctly !";
+            float percentage = ((float)score / total * 100.0f);
+
+            String message;
+            if (percentage > 40)
+                message = "Congratulations !! You have PASSED !";
+            else
+                message = "Sorry !! You have FAILED !";
+            message += "\n\nYou answered " + (correctGroupA + correctGroupB) + " out of " + m_correctAnswers.Count + " correctly !";
             message += "\nCorrect answers in Group A: " + correctGroupA;
             message += "\nCorrect answers in Group B: " + correctGroupB;
             message += "\n\nYour score is: " + score;
-            //message += "\n\nYour wrong Answers:\n";
-            //for (int i = 0; i < m_answers.Count; ++i)
-            //    if (m_answers[i] != m_correctAnswers[i])
-            //    {
-            //        message += (i+1) + ". " + Convert.ToChar(i+97) + " ";
-            //    }
+
+            message += " (" + percentage + "%)";
+
             MessageBox.Show(message);
 
             Close();
