@@ -111,11 +111,6 @@ namespace Model_Entrance
             RefreshQuestions();
             RefreshControls();
 
-            m_timer = new System.Timers.Timer(1000);
-            m_timer.Elapsed += new System.Timers.ElapsedEventHandler(time_elapsed);
-            m_timer.SynchronizingObject = this;
-            m_timer.Start();
-
             LoadSets();
 
             for (int i = 0; i < m_sets.Length; ++i )
@@ -125,9 +120,12 @@ namespace Model_Entrance
                 item.Click += new EventHandler(set_changed);
             }
 
+            m_timer = new System.Timers.Timer(1000);
+            m_timer.Elapsed += new System.Timers.ElapsedEventHandler(time_elapsed);
+            m_timer.SynchronizingObject = this;
+
             if (m_sets.Length > 0)
                 set_changed(randomToolStripMenuItem, null);
-
 
             pnl_holder.Hide();
             pnl_bottom.Hide();
@@ -278,7 +276,7 @@ namespace Model_Entrance
 
         public void RefreshControls()
         {
-            int top = 130;
+            int top = pnl_title.Top + pnl_title.Height;
             foreach (QuestionControls qc in m_questionControls)
             {
                 qc.panel.Top = top;
@@ -356,6 +354,9 @@ namespace Model_Entrance
                 return;
             LoadQuestions(m_sets[new_set]);
             m_current_set = new_set;
+            m_timer.Stop();
+            seconds = 0;
+            m_timer.Start();
         }
 
         [DllImport("user32.dll")]
