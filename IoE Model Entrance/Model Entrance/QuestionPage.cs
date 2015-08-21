@@ -26,6 +26,7 @@ namespace Model_Entrance
             splash.Close();
         }
 
+        private String PassageTitle = "Read the following passage carefully and answer the following questions.";
 
         private void QuestionsEditor_Load(object sender, EventArgs e)
         {
@@ -39,6 +40,20 @@ namespace Model_Entrance
             controls.panel = pnl_question;
             m_questionControls.Add(controls);
             m_questions.Add(new Question());
+
+            pnl_passage = pnl_question.Clone();
+            rtb_passage = rtb_question1.Clone();
+            rtb_passage.Parent = pnl_passage;
+            rtb_passage.Show();
+            pnl_passage.Parent = pnl_holder;
+            lbl_passage = new Label();
+            lbl_passage.Show();
+            lbl_passage.Text = PassageTitle;
+            lbl_passage.Left = 5;
+            lbl_passage.Width = pnl_passage.Width;
+            lbl_passage.Parent = pnl_passage;
+            lbl_passage.Font = new Font(pnl_passage.Font, FontStyle.Bold);
+            pnl_passage.Hide();
 
             pnl_title.Visible = pnl_question.Visible = true;
 
@@ -70,6 +85,7 @@ namespace Model_Entrance
                 m_questions.Add(new Question());
             }
 
+            rtb_passage.ContentsResized += new ContentsResizedEventHandler(content_resized); 
             foreach (QuestionControls c in m_questionControls)
             {
                 c.question.ContentsResized += new ContentsResizedEventHandler(content_resized);
@@ -171,6 +187,9 @@ namespace Model_Entrance
         private int m_questionsPerPage = 10;
         private System.Timers.Timer m_timer;
 
+        private Panel pnl_passage;
+        private Label lbl_passage;
+        private RichTextBox rtb_passage;
 
         struct QuestionControls
         {
@@ -253,6 +272,7 @@ namespace Model_Entrance
         {
             // Remove all questions that are empty
             m_questions.RemoveAll(q => GetTextFromRtf(q.question) == "");
+            rtb_passage.Rtf = m_passage.passageText;
 
             int i = m_currentPage * m_questionsPerPage;
             foreach (QuestionControls qc in m_questionControls) 
@@ -276,9 +296,22 @@ namespace Model_Entrance
 
         public void RefreshControls()
         {
+            int i = m_currentPage * m_questionsPerPage;
             int top = pnl_title.Top + pnl_title.Height;
+
+            bool passageShown = false;
             foreach (QuestionControls qc in m_questionControls)
             {
+                if (m_passage.passageQuestion == (i++)+1)
+                {
+                    passageShown = true;
+                    pnl_passage.Top = top;
+                    lbl_passage.Top = 5;
+                    rtb_passage.Top = 5 + lbl_passage.Height;
+                    top += rtb_passage.Top + rtb_passage.Height + 10;
+                    pnl_passage.Height = rtb_passage.Top + rtb_passage.Height + 10;
+                    pnl_passage.Show();
+                }
                 qc.panel.Top = top;
                 qc.question.Top = 5;
                 qc.optiona.Top = qc.optionb.Top = qc.selecta.Top = qc.selectb.Top
@@ -289,6 +322,10 @@ namespace Model_Entrance
                 qc.panel.Height = qc.optionc.Top + Math.Max(qc.optiona.Height, qc.optionb.Height) + 20;
                 top += qc.panel.Height;
             }
+
+            if (!passageShown)
+                pnl_passage.Hide();
+
             if (m_currentPage == m_totalPages - 1)
                 btn_next.Text = "Submit";
             else
