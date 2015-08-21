@@ -26,6 +26,7 @@ namespace Model_Entrance
             splash.Close();
         }
 
+        private int GroupSeparatorQuestions = 12;
         private String PassageTitle = "Read the following passage carefully and answer the following questions.";
 
         private void QuestionsEditor_Load(object sender, EventArgs e)
@@ -54,6 +55,9 @@ namespace Model_Entrance
             lbl_passage.Parent = pnl_passage;
             lbl_passage.Font = new Font(pnl_passage.Font, FontStyle.Bold);
             pnl_passage.Hide();
+
+            lbl_groupA.Hide();
+            lbl_groupB.Hide();
 
             pnl_title.Visible = pnl_question.Visible = true;
 
@@ -262,6 +266,7 @@ namespace Model_Entrance
                 Cursor.Current = Cursors.Default;
                 MessageBox.Show("failed to load the file \"" + fileName + "\"\n\r" + e.Message, "Question Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             m_currentPage = 0;
             m_totalPages = m_questions.Count / m_questionsPerPage;
             this.RefreshQuestions();
@@ -299,12 +304,31 @@ namespace Model_Entrance
             int i = m_currentPage * m_questionsPerPage;
             int top = pnl_title.Top + pnl_title.Height;
 
-            bool passageShown = false;
+            pnl_passage.Hide();
+            lbl_groupA.Hide(); 
+            lbl_groupB.Hide();
+
             foreach (QuestionControls qc in m_questionControls)
             {
-                if (m_passage.passageQuestion == (i++)+1)
+                int qn = (i++)+1;
+                
+                if (qn == 1)
                 {
-                    passageShown = true;
+                    lbl_groupA.Show();
+                    lbl_groupA.Left = pnl_question.Left;
+                    lbl_groupA.Top = top;
+                    top += lbl_groupA.Height;
+                }
+                else if (qn == GroupSeparatorQuestions+1)
+                {
+                    lbl_groupB.Show();
+                    lbl_groupB.Left = pnl_question.Left;
+                    lbl_groupB.Top = top;
+                    top += lbl_groupB.Height;
+                }
+
+                if (m_passage.passageQuestion == qn)
+                {
                     pnl_passage.Top = top;
                     lbl_passage.Top = 5;
                     rtb_passage.Top = 5 + lbl_passage.Height;
@@ -313,6 +337,7 @@ namespace Model_Entrance
                     pnl_passage.Show();
                 }
                 qc.panel.Top = top;
+
                 qc.question.Top = 5;
                 qc.optiona.Top = qc.optionb.Top = qc.selecta.Top = qc.selectb.Top
                     = qc.question.Top + qc.question.Height + 10;
@@ -322,9 +347,6 @@ namespace Model_Entrance
                 qc.panel.Height = qc.optionc.Top + Math.Max(qc.optiona.Height, qc.optionb.Height) + 20;
                 top += qc.panel.Height;
             }
-
-            if (!passageShown)
-                pnl_passage.Hide();
 
             if (m_currentPage == m_totalPages - 1)
                 btn_next.Text = "Submit";
@@ -416,8 +438,11 @@ namespace Model_Entrance
                 return;
             LoadQuestions(m_sets[new_set]);
             m_current_set = new_set;
-            m_timer.Stop();
+
+            // Reset time
             seconds = 0;
+            lbl_timer.Text = "Time Elapsed: " + TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
+            m_timer.Stop();
             m_timer.Start();
         }
 

@@ -56,6 +56,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_groupA = new System.Windows.Forms.Label();
+            this.lbl_groupB = new System.Windows.Forms.Label();
             this.pnl_holder.SuspendLayout();
             this.pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
@@ -68,12 +70,14 @@
             // 
             this.pnl_holder.AutoScroll = true;
             this.pnl_holder.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_holder.Controls.Add(this.lbl_groupB);
+            this.pnl_holder.Controls.Add(this.lbl_groupA);
             this.pnl_holder.Controls.Add(this.pnl_title);
             this.pnl_holder.Controls.Add(this.pnl_question);
             this.pnl_holder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_holder.Location = new System.Drawing.Point(0, 0);
             this.pnl_holder.Name = "pnl_holder";
-            this.pnl_holder.Size = new System.Drawing.Size(900, 450);
+            this.pnl_holder.Size = new System.Drawing.Size(900, 510);
             this.pnl_holder.TabIndex = 0;
             // 
             // pnl_title
@@ -128,7 +132,7 @@
             this.pnl_question.Controls.Add(this.rtb_optiond1);
             this.pnl_question.Location = new System.Drawing.Point(50, 120);
             this.pnl_question.Name = "pnl_question";
-            this.pnl_question.Size = new System.Drawing.Size(800, 300);
+            this.pnl_question.Size = new System.Drawing.Size(800, 303);
             this.pnl_question.TabIndex = 2;
             this.pnl_question.Visible = false;
             // 
@@ -262,7 +266,7 @@
             this.pnl_bottom.Controls.Add(this.btn_prev);
             this.pnl_bottom.Controls.Add(this.btn_next);
             this.pnl_bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_bottom.Location = new System.Drawing.Point(0, 450);
+            this.pnl_bottom.Location = new System.Drawing.Point(0, 510);
             this.pnl_bottom.Name = "pnl_bottom";
             this.pnl_bottom.Size = new System.Drawing.Size(900, 50);
             this.pnl_bottom.TabIndex = 1;
@@ -354,11 +358,35 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
+            // lbl_groupA
+            // 
+            this.lbl_groupA.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_groupA.BackColor = System.Drawing.Color.White;
+            this.lbl_groupA.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_groupA.Location = new System.Drawing.Point(50, 439);
+            this.lbl_groupA.Name = "lbl_groupA";
+            this.lbl_groupA.Size = new System.Drawing.Size(800, 26);
+            this.lbl_groupA.TabIndex = 3;
+            this.lbl_groupA.Text = "Group A";
+            this.lbl_groupA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_groupB
+            // 
+            this.lbl_groupB.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_groupB.BackColor = System.Drawing.Color.White;
+            this.lbl_groupB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_groupB.Location = new System.Drawing.Point(50, 465);
+            this.lbl_groupB.Name = "lbl_groupB";
+            this.lbl_groupB.Size = new System.Drawing.Size(800, 24);
+            this.lbl_groupB.TabIndex = 3;
+            this.lbl_groupB.Text = "Group B";
+            this.lbl_groupB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // QuestionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 500);
+            this.ClientSize = new System.Drawing.Size(900, 560);
             this.Controls.Add(this.pnl_holder);
             this.Controls.Add(this.pnl_bottom);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -411,6 +439,8 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Label lbl_groupB;
+        private System.Windows.Forms.Label lbl_groupA;
     }
 }
 
