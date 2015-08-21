@@ -167,6 +167,11 @@ namespace Model_Entrance
 
         public void SignIn(String username, String password)
         {
+            if (Authorization.GetPassword(username) != password)
+            {
+                MessageBox.Show("Invalid combination of username and password ! Please try again !");
+                return;
+            }
             m_loginscreen.Close();
             pnl_holder.Show();
             pnl_bottom.Show();
@@ -195,6 +200,7 @@ namespace Model_Entrance
             {
                 m_timer.Stop();
                 MessageBox.Show("Time Up!!!");
+                Submit();
             }
         }
 
@@ -476,7 +482,11 @@ namespace Model_Entrance
                 return;
             if (m_currentPage == m_totalPages - 1)
             {
-                Submit();
+                DialogResult dialogResult = MessageBox.Show("Once submitted, you cannot edit your answers !", "Are you sure ?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Submit();
+                }
                 return;
             }
             m_currentPage++;
@@ -495,14 +505,16 @@ namespace Model_Entrance
         }
         private void Submit()
         {
-            DialogResult dialogResult = MessageBox.Show("Once submitted, you cannot edit your answers !", "Are you sure ?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                MessageBox.Show("You answered " + CheckAnswers() + " out of " + m_correctAnswers.Count + " correctly !");
+            String message = "You answered " + CheckAnswers() + " out of " + m_correctAnswers.Count + " correctly !";
+            //message += "\n\nYour wrong Answers:\n";
+            //for (int i = 0; i < m_answers.Count; ++i)
+            //    if (m_answers[i] != m_correctAnswers[i])
+            //    {
+            //        message += (i+1) + ". " + Convert.ToChar(i+97) + " ";
+            //    }
+            MessageBox.Show(message);
 
-                if (m_sets.Length > 0)
-                    set_changed(randomToolStripMenuItem, null); 
-            }
+            Close();
         }
 
         private void content_resized(object _sender, ContentsResizedEventArgs e)
