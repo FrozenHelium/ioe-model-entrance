@@ -60,7 +60,6 @@ namespace Model_Entrance
 
             foreach (QuestionControls c in m_questionControls)
             {
-
                 c.question.ContentsResized += new ContentsResizedEventHandler(content_resized);
                 c.optiona.ContentsResized += new ContentsResizedEventHandler(content_resized);
                 c.optionb.ContentsResized += new ContentsResizedEventHandler(content_resized);
@@ -121,9 +120,15 @@ namespace Model_Entrance
             rtf.Text = str;
             return rtf.Rtf;
         }
+        private static String GetTextFromRtf(String str)
+        {
+            RichTextBox rtf = new RichTextBox();
+            rtf.Rtf = str;
+            return rtf.Text;
+        }
         [Serializable]
         private class Question {
-            public String question=GetRtf("hello"), optiona="", optionb="", optionc="", optiond="";
+            public String question=GetRtf("Hello"), optiona="", optionb="", optionc="", optiond="";
         }
 
         [Serializable]
@@ -170,7 +175,7 @@ namespace Model_Entrance
         public void RefreshQuestions()
         {
             // Remove all questions that are empty
-            m_questions.RemoveAll(q => q.question == "");
+            m_questions.RemoveAll(q => GetTextFromRtf(q.question) == "");
 
             int i = m_currentPage * m_questionsPerPage;
             foreach (QuestionControls qc in m_questionControls) 
