@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutModelEntrance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutModelEntrance.designer.cs">
+      <DependentUpon>AboutModelEntrance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Authorization.cs" />
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="FormLogIn.cs">
@@ -67,6 +73,9 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutModelEntrance.resx">
+      <DependentUpon>AboutModelEntrance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogIn.resx">
       <DependentUpon>FormLogIn.cs</DependentUpon>
     </EmbeddedResource>

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionPage));
             this.pnl_holder = new System.Windows.Forms.Panel();
+            this.lbl_groupB = new System.Windows.Forms.Label();
+            this.lbl_groupA = new System.Windows.Forms.Label();
             this.pnl_title = new System.Windows.Forms.Panel();
             this.img_titleLogo = new System.Windows.Forms.PictureBox();
             this.lbl_titleText = new System.Windows.Forms.Label();
@@ -56,8 +58,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbl_groupA = new System.Windows.Forms.Label();
-            this.lbl_groupB = new System.Windows.Forms.Label();
             this.pnl_holder.SuspendLayout();
             this.pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
@@ -79,6 +79,30 @@
             this.pnl_holder.Name = "pnl_holder";
             this.pnl_holder.Size = new System.Drawing.Size(900, 510);
             this.pnl_holder.TabIndex = 0;
+            // 
+            // lbl_groupB
+            // 
+            this.lbl_groupB.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_groupB.BackColor = System.Drawing.Color.White;
+            this.lbl_groupB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_groupB.Location = new System.Drawing.Point(50, 465);
+            this.lbl_groupB.Name = "lbl_groupB";
+            this.lbl_groupB.Size = new System.Drawing.Size(800, 24);
+            this.lbl_groupB.TabIndex = 3;
+            this.lbl_groupB.Text = "Group B";
+            this.lbl_groupB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_groupA
+            // 
+            this.lbl_groupA.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_groupA.BackColor = System.Drawing.Color.White;
+            this.lbl_groupA.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_groupA.Location = new System.Drawing.Point(50, 439);
+            this.lbl_groupA.Name = "lbl_groupA";
+            this.lbl_groupA.Size = new System.Drawing.Size(800, 26);
+            this.lbl_groupA.TabIndex = 3;
+            this.lbl_groupA.Text = "Group A";
+            this.lbl_groupA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnl_title
             // 
@@ -330,14 +354,14 @@
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.ctx_menu.Name = "ctx_menu";
-            this.ctx_menu.Size = new System.Drawing.Size(135, 92);
+            this.ctx_menu.Size = new System.Drawing.Size(153, 114);
             // 
             // menu_item_change_set
             // 
             this.menu_item_change_set.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.randomToolStripMenuItem});
             this.menu_item_change_set.Name = "menu_item_change_set";
-            this.menu_item_change_set.Size = new System.Drawing.Size(134, 22);
+            this.menu_item_change_set.Size = new System.Drawing.Size(152, 22);
             this.menu_item_change_set.Text = "Change Set";
             // 
             // randomToolStripMenuItem
@@ -351,45 +375,22 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
-            // 
-            // lbl_groupA
-            // 
-            this.lbl_groupA.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbl_groupA.BackColor = System.Drawing.Color.White;
-            this.lbl_groupA.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_groupA.Location = new System.Drawing.Point(50, 439);
-            this.lbl_groupA.Name = "lbl_groupA";
-            this.lbl_groupA.Size = new System.Drawing.Size(800, 26);
-            this.lbl_groupA.TabIndex = 3;
-            this.lbl_groupA.Text = "Group A";
-            this.lbl_groupA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_groupB
-            // 
-            this.lbl_groupB.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbl_groupB.BackColor = System.Drawing.Color.White;
-            this.lbl_groupB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_groupB.Location = new System.Drawing.Point(50, 465);
-            this.lbl_groupB.Name = "lbl_groupB";
-            this.lbl_groupB.Size = new System.Drawing.Size(800, 24);
-            this.lbl_groupB.TabIndex = 3;
-            this.lbl_groupB.Text = "Group B";
-            this.lbl_groupB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // QuestionPage
             // 

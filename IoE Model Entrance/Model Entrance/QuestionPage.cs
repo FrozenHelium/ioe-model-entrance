@@ -190,7 +190,7 @@ namespace Model_Entrance
         private int m_current_set = -1;
 
         private int seconds = 0;
-        private int target_seconds = 3 * 60 * 60; // 3 hrs
+        private int target_seconds = 3*60*60; // 3 hrs
         public void time_elapsed(object sender, System.Timers.ElapsedEventArgs args)
         {
             seconds++;
@@ -463,7 +463,7 @@ namespace Model_Entrance
             if (m_currentPage == m_totalPages - 1)
                 btn_next.Text = "Submit";
             else
-                btn_next.Text = "Next";
+                btn_next.Text = "Next →";
         }
 
         private void btn_prev_Click(object sender, EventArgs e)
@@ -495,17 +495,30 @@ namespace Model_Entrance
             RefreshControls();
         }
 
+        private int correctGroupA, correctGroupB;
         private int CheckAnswers()
         {
             int score = 0;
+            correctGroupA = 0;
+            correctGroupB = 0;
             for (int i=0; i<m_answers.Count; ++i)
                 if (m_answers[i] == m_correctAnswers[i])
-                    score++;
+                {
+                    if (i >= GroupSeparatorQuestions)
+                        correctGroupB++;
+                    else
+                        correctGroupA++;
+                }
+            score = correctGroupA + correctGroupB * 2;
             return score;
         }
         private void Submit()
         {
-            String message = "You answered " + CheckAnswers() + " out of " + m_correctAnswers.Count + " correctly !";
+            int score = CheckAnswers();
+            String message = "You answered " + (correctGroupA + correctGroupB) + " out of " + m_correctAnswers.Count + " correctly !";
+            message += "\nCorrect answers in Group A: " + correctGroupA;
+            message += "\nCorrect answers in Group B: " + correctGroupB;
+            message += "\n\nYour score is: " + score;
             //message += "\n\nYour wrong Answers:\n";
             //for (int i = 0; i < m_answers.Count; ++i)
             //    if (m_answers[i] != m_correctAnswers[i])
@@ -585,6 +598,12 @@ namespace Model_Entrance
         {
             SendMessage(parent.Handle, WM_SETREDRAW, true, 0);
             parent.Refresh();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutModelEntrance about = new AboutModelEntrance();
+            about.Show();
         }
     }
 
