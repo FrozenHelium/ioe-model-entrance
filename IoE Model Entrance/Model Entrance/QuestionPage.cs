@@ -167,7 +167,7 @@ namespace Model_Entrance
 
         public void SignIn(String username, String password)
         {
-            if (Authorization.GetPassword(username) != password)
+            if (username == "" || Authorization.GetPassword(username) != password)
             {
                 MessageBox.Show("Invalid combination of username and password ! Please try again !");
                 return;
