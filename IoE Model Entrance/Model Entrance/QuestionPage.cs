@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,10 +15,17 @@ namespace Model_Entrance
 {
     public partial class QuestionPage : Form
     {
+        private SplashScreen splash;
         public QuestionPage()
         {
             InitializeComponent();
+            splash = new SplashScreen();
+            splash.Show();
+            System.Threading.Thread.Sleep(1000);
+            splash.Close();
+            
         }
+
 
         private void QuestionsEditor_Load(object sender, EventArgs e)
         {
@@ -46,6 +54,7 @@ namespace Model_Entrance
                 controls.selectd = radio_d.Clone();
                 controls.panel = pnl_question.Clone();
 
+
                 controls.ChangeParent();
 
                 controls.question.Tag = "qn" + i;
@@ -68,6 +77,32 @@ namespace Model_Entrance
 
                 c.question.Text = c.optiona.Text = c.optionb.Text = c.optionc.Text = c.optiond.Text = "\n";
                 c.question.Text = c.optiona.Text = c.optionb.Text = c.optionc.Text = c.optiond.Text = "";
+
+                c.question.GotFocus += new EventHandler(delegate(Object o, EventArgs a)
+                {
+                    c.label.Focus();
+                });
+
+                c.optiona.GotFocus += new EventHandler(delegate(Object o, EventArgs a)
+                {
+                    c.selecta.Focus();
+                    c.selecta.Checked = true;
+                });
+                c.optionb.GotFocus += new EventHandler(delegate(Object o, EventArgs a)
+                {
+                    c.selectb.Focus();
+                    c.selectb.Checked = true;
+                });
+                c.optionc.GotFocus += new EventHandler(delegate(Object o, EventArgs a)
+                {
+                    c.selectc.Focus();
+                    c.selectc.Checked = true;
+                });
+                c.optiond.GotFocus += new EventHandler(delegate(Object o, EventArgs a)
+                {
+                    c.selectd.Focus();
+                    c.selectd.Checked = true;
+                });
             }
 
             RefreshQuestions();
@@ -77,10 +112,13 @@ namespace Model_Entrance
             m_timer.Elapsed += new System.Timers.ElapsedEventHandler(time_elapsed);
             m_timer.SynchronizingObject = this;
             m_timer.Start();
+
+
+            //this.LoadQuestions("E:\\abc.qset");
         }
 
         private int seconds = 0;
-        private int target_seconds = 3*60*60; // 3 hrs
+        private int target_seconds = 3 * 60 * 60; // 3 hrs
         public void time_elapsed(object sender, System.Timers.ElapsedEventArgs args)
         {
             seconds++;
@@ -99,7 +137,8 @@ namespace Model_Entrance
         private System.Timers.Timer m_timer;
 
 
-        struct QuestionControls {
+        struct QuestionControls
+        {
             public Label label;
             public RichTextBox question, optiona, optionb, optionc, optiond;
             public RadioButton selecta, selectb, selectc, selectd;
@@ -127,18 +166,19 @@ namespace Model_Entrance
             return rtf.Text;
         }
         [Serializable]
-        private class Question {
-            public String question=GetRtf("Hello"), optiona="", optionb="", optionc="", optiond="";
+        private class Question
+        {
+            public String question = GetRtf("hello"), optiona = "", optionb = "", optionc = "", optiond = "";
         }
 
         [Serializable]
         public class Passage
         {
             public int passageQuestion = -1;
-            public String passageText="";
+            public String passageText = "";
         }
 
-        private List<QuestionControls> m_questionControls =  new List<QuestionControls>();
+        private List<QuestionControls> m_questionControls = new List<QuestionControls>();
         private List<Question> m_questions = new List<Question>();
         public Passage m_passage = new Passage();
 
@@ -152,12 +192,14 @@ namespace Model_Entrance
                 using (System.IO.Stream stream = System.IO.File.Open(fileName, System.IO.FileMode.Open))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Binder = new ModelQuestionBinder();
                     m_questions = (List<Question>)bformatter.Deserialize(stream);
+
                 }
-                using (System.IO.Stream stream = System.IO.File.Open(fileName+"p", System.IO.FileMode.Open))
+                using (System.IO.Stream stream = System.IO.File.Open(fileName + "p", System.IO.FileMode.Open))
                 {
-                    Passage p = new Passage();
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Binder = new ModelQuestionPassageBinder();
                     m_passage = (Passage)bformatter.Deserialize(stream);
                 }
             }
@@ -198,7 +240,7 @@ namespace Model_Entrance
 
         public void RefreshControls()
         {
-            int top = 5;
+            int top = 130;
             foreach (QuestionControls qc in m_questionControls)
             {
                 qc.panel.Top = top;
@@ -209,7 +251,7 @@ namespace Model_Entrance
                     = qc.optiona.Top + Math.Max(qc.optiona.Height, qc.optionb.Height) + 10;
 
                 qc.panel.Height = qc.optionc.Top + Math.Max(qc.optiona.Height, qc.optionb.Height) + 20;
-                top += qc.panel.Height + 10;
+                top += qc.panel.Height;
             }
         }
 
@@ -233,7 +275,7 @@ namespace Model_Entrance
         private void content_resized(object _sender, ContentsResizedEventArgs e)
         {
             RichTextBox sender = (RichTextBox)_sender;
-            sender.Height = e.NewRectangle.Height + 5;
+            sender.Height = e.NewRectangle.Height + 15;
             RefreshControls();
         }
 
@@ -242,5 +284,67 @@ namespace Model_Entrance
             this.Close();
         }
 
+        private void lbl_titleText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+    }
+
+    sealed class ModelQuestionBinder : SerializationBinder
+    {
+        public override Type BindToType(string assemblyName, string typeName)
+        {
+
+            Type returntype = null;
+            if (assemblyName == "Question Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+            {
+                assemblyName = Assembly.GetExecutingAssembly().FullName;
+                typeName = "Model_Entrance.QuestionPage+Question";
+                returntype = Type.GetType(String.Format("{0}, {1}", typeName, assemblyName));
+
+                //return returntype;
+            }
+
+            if (typeName == "System.Collections.Generic.List`1[[Question_Editor.QuestionEditor+Question, Question Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]")
+            {
+                typeName = typeName.Replace("Question Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    Assembly.GetExecutingAssembly().FullName);
+                typeName = typeName.Replace("Question_Editor.QuestionEditor", "Model_Entrance.QuestionPage");
+                returntype = Type.GetType(String.Format("{0}, {1}",
+                    typeName, assemblyName));
+                //return returntype;
+            }
+
+            return returntype;
+        }
+    }
+
+    sealed class ModelQuestionPassageBinder : SerializationBinder
+    {
+        public override Type BindToType(string assemblyName, string typeName)
+        {
+
+            Type returntype = null;
+            if (assemblyName == "Question Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+            {
+                assemblyName = Assembly.GetExecutingAssembly().FullName;
+                typeName = "Model_Entrance.QuestionPage+Passage";
+                returntype = Type.GetType(String.Format("{0}, {1}", typeName, assemblyName));
+
+                //return returntype;
+            }
+
+            if (typeName == "Question_Editor.QuestionEditor+Passage")
+            {
+                
+                typeName = typeName.Replace("Question_Editor.QuestionEditor", "Model_Entrance.QuestionPage");
+                returntype = Type.GetType(String.Format("{0}, {1}",
+                    typeName, assemblyName));
+                //return returntype;
+            }
+
+            return returntype;
+        }
     }
 }

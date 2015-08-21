@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionPage));
             this.pnl_holder = new System.Windows.Forms.Panel();
+            this.pnl_title = new System.Windows.Forms.Panel();
+            this.img_titleLogo = new System.Windows.Forms.PictureBox();
+            this.lbl_titleText = new System.Windows.Forms.Label();
             this.pnl_question = new System.Windows.Forms.Panel();
             this.radio_d = new System.Windows.Forms.RadioButton();
             this.radio_b = new System.Windows.Forms.RadioButton();
@@ -45,33 +48,64 @@
             this.lbl_timer = new System.Windows.Forms.Label();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_holder.SuspendLayout();
+            this.pnl_title.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).BeginInit();
             this.pnl_question.SuspendLayout();
             this.pnl_bottom.SuspendLayout();
-            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_holder
             // 
             this.pnl_holder.AutoScroll = true;
+            this.pnl_holder.Controls.Add(this.pnl_title);
             this.pnl_holder.Controls.Add(this.pnl_question);
             this.pnl_holder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_holder.Location = new System.Drawing.Point(0, 24);
+            this.pnl_holder.Location = new System.Drawing.Point(0, 0);
             this.pnl_holder.Name = "pnl_holder";
-            this.pnl_holder.Size = new System.Drawing.Size(900, 426);
+            this.pnl_holder.Size = new System.Drawing.Size(900, 450);
             this.pnl_holder.TabIndex = 0;
+            // 
+            // pnl_title
+            // 
+            this.pnl_title.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnl_title.BackColor = System.Drawing.Color.White;
+            this.pnl_title.Controls.Add(this.img_titleLogo);
+            this.pnl_title.Controls.Add(this.lbl_titleText);
+            this.pnl_title.Location = new System.Drawing.Point(50, 10);
+            this.pnl_title.Name = "pnl_title";
+            this.pnl_title.Size = new System.Drawing.Size(800, 120);
+            this.pnl_title.TabIndex = 0;
+            // 
+            // img_titleLogo
+            // 
+            this.img_titleLogo.Image = global::Model_Entrance.Properties.Resources.modelIoE;
+            this.img_titleLogo.InitialImage = global::Model_Entrance.Properties.Resources.modelIoE;
+            this.img_titleLogo.Location = new System.Drawing.Point(50, 15);
+            this.img_titleLogo.Name = "img_titleLogo";
+            this.img_titleLogo.Size = new System.Drawing.Size(64, 64);
+            this.img_titleLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.img_titleLogo.TabIndex = 0;
+            this.img_titleLogo.TabStop = false;
+            // 
+            // lbl_titleText
+            // 
+            this.lbl_titleText.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_titleText.AutoSize = true;
+            this.lbl_titleText.Font = new System.Drawing.Font("Segoe UI Semibold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_titleText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(190)))), ((int)(((byte)(160)))));
+            this.lbl_titleText.Location = new System.Drawing.Point(120, 20);
+            this.lbl_titleText.Name = "lbl_titleText";
+            this.lbl_titleText.Size = new System.Drawing.Size(328, 47);
+            this.lbl_titleText.TabIndex = 0;
+            this.lbl_titleText.Text = "IoE Model Entrance";
+            this.lbl_titleText.Click += new System.EventHandler(this.lbl_titleText_Click);
             // 
             // pnl_question
             // 
             this.pnl_question.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnl_question.AutoSize = true;
+            this.pnl_question.BackColor = System.Drawing.Color.White;
             this.pnl_question.Controls.Add(this.radio_d);
             this.pnl_question.Controls.Add(this.radio_b);
             this.pnl_question.Controls.Add(this.radio_c);
@@ -82,15 +116,16 @@
             this.pnl_question.Controls.Add(this.rtb_optionb1);
             this.pnl_question.Controls.Add(this.rtb_optionc1);
             this.pnl_question.Controls.Add(this.rtb_optiond1);
-            this.pnl_question.Location = new System.Drawing.Point(42, 3);
+            this.pnl_question.Location = new System.Drawing.Point(50, 120);
             this.pnl_question.Name = "pnl_question";
-            this.pnl_question.Size = new System.Drawing.Size(773, 309);
+            this.pnl_question.Size = new System.Drawing.Size(800, 300);
             this.pnl_question.TabIndex = 2;
             // 
             // radio_d
             // 
             this.radio_d.AutoSize = true;
-            this.radio_d.Location = new System.Drawing.Point(441, 259);
+            this.radio_d.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radio_d.Location = new System.Drawing.Point(430, 260);
             this.radio_d.Name = "radio_d";
             this.radio_d.Size = new System.Drawing.Size(14, 13);
             this.radio_d.TabIndex = 1;
@@ -100,7 +135,8 @@
             // radio_b
             // 
             this.radio_b.AutoSize = true;
-            this.radio_b.Location = new System.Drawing.Point(441, 200);
+            this.radio_b.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radio_b.Location = new System.Drawing.Point(430, 200);
             this.radio_b.Name = "radio_b";
             this.radio_b.Size = new System.Drawing.Size(14, 13);
             this.radio_b.TabIndex = 1;
@@ -110,7 +146,8 @@
             // radio_c
             // 
             this.radio_c.AutoSize = true;
-            this.radio_c.Location = new System.Drawing.Point(80, 259);
+            this.radio_c.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radio_c.Location = new System.Drawing.Point(80, 260);
             this.radio_c.Name = "radio_c";
             this.radio_c.Size = new System.Drawing.Size(14, 13);
             this.radio_c.TabIndex = 1;
@@ -120,6 +157,7 @@
             // radio_a
             // 
             this.radio_a.AutoSize = true;
+            this.radio_a.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radio_a.Location = new System.Drawing.Point(80, 200);
             this.radio_a.Name = "radio_a";
             this.radio_a.Size = new System.Drawing.Size(14, 13);
@@ -131,7 +169,7 @@
             // 
             this.lbl_qn1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbl_qn1.AutoSize = true;
-            this.lbl_qn1.Location = new System.Drawing.Point(8, 15);
+            this.lbl_qn1.Location = new System.Drawing.Point(15, 5);
             this.lbl_qn1.Name = "lbl_qn1";
             this.lbl_qn1.Size = new System.Drawing.Size(16, 13);
             this.lbl_qn1.TabIndex = 0;
@@ -140,9 +178,9 @@
             // rtb_question1
             // 
             this.rtb_question1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_question1.BackColor = System.Drawing.SystemColors.Window;
+            this.rtb_question1.BackColor = System.Drawing.Color.White;
             this.rtb_question1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtb_question1.Location = new System.Drawing.Point(58, 15);
+            this.rtb_question1.Location = new System.Drawing.Point(50, 5);
             this.rtb_question1.Name = "rtb_question1";
             this.rtb_question1.ReadOnly = true;
             this.rtb_question1.Size = new System.Drawing.Size(700, 150);
@@ -153,12 +191,13 @@
             // rtb_optiona1
             // 
             this.rtb_optiona1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optiona1.BackColor = System.Drawing.SystemColors.Window;
+            this.rtb_optiona1.BackColor = System.Drawing.Color.White;
             this.rtb_optiona1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtb_optiona1.Location = new System.Drawing.Point(117, 180);
+            this.rtb_optiona1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rtb_optiona1.Location = new System.Drawing.Point(110, 180);
             this.rtb_optiona1.Name = "rtb_optiona1";
             this.rtb_optiona1.ReadOnly = true;
-            this.rtb_optiona1.Size = new System.Drawing.Size(281, 50);
+            this.rtb_optiona1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optiona1.TabIndex = 0;
             this.rtb_optiona1.Tag = "oa0";
             this.rtb_optiona1.Text = "";
@@ -166,12 +205,13 @@
             // rtb_optionb1
             // 
             this.rtb_optionb1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optionb1.BackColor = System.Drawing.SystemColors.Window;
+            this.rtb_optionb1.BackColor = System.Drawing.Color.White;
             this.rtb_optionb1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtb_optionb1.Location = new System.Drawing.Point(477, 180);
+            this.rtb_optionb1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rtb_optionb1.Location = new System.Drawing.Point(470, 180);
             this.rtb_optionb1.Name = "rtb_optionb1";
             this.rtb_optionb1.ReadOnly = true;
-            this.rtb_optionb1.Size = new System.Drawing.Size(281, 50);
+            this.rtb_optionb1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optionb1.TabIndex = 0;
             this.rtb_optionb1.Tag = "ob0";
             this.rtb_optionb1.Text = "";
@@ -179,12 +219,13 @@
             // rtb_optionc1
             // 
             this.rtb_optionc1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optionc1.BackColor = System.Drawing.SystemColors.Window;
+            this.rtb_optionc1.BackColor = System.Drawing.Color.White;
             this.rtb_optionc1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtb_optionc1.Location = new System.Drawing.Point(117, 240);
+            this.rtb_optionc1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rtb_optionc1.Location = new System.Drawing.Point(110, 240);
             this.rtb_optionc1.Name = "rtb_optionc1";
             this.rtb_optionc1.ReadOnly = true;
-            this.rtb_optionc1.Size = new System.Drawing.Size(281, 50);
+            this.rtb_optionc1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optionc1.TabIndex = 0;
             this.rtb_optionc1.Tag = "oc0";
             this.rtb_optionc1.Text = "";
@@ -192,19 +233,19 @@
             // rtb_optiond1
             // 
             this.rtb_optiond1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rtb_optiond1.BackColor = System.Drawing.SystemColors.Window;
+            this.rtb_optiond1.BackColor = System.Drawing.Color.White;
             this.rtb_optiond1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtb_optiond1.Location = new System.Drawing.Point(477, 240);
+            this.rtb_optiond1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rtb_optiond1.Location = new System.Drawing.Point(470, 240);
             this.rtb_optiond1.Name = "rtb_optiond1";
             this.rtb_optiond1.ReadOnly = true;
-            this.rtb_optiond1.Size = new System.Drawing.Size(281, 50);
+            this.rtb_optiond1.Size = new System.Drawing.Size(280, 50);
             this.rtb_optiond1.TabIndex = 0;
             this.rtb_optiond1.Tag = "od0";
             this.rtb_optiond1.Text = "";
             // 
             // pnl_bottom
             // 
-            this.pnl_bottom.BackColor = System.Drawing.Color.LightGray;
             this.pnl_bottom.Controls.Add(this.lbl_timer);
             this.pnl_bottom.Controls.Add(this.btn_prev);
             this.pnl_bottom.Controls.Add(this.btn_next);
@@ -217,9 +258,10 @@
             // lbl_timer
             // 
             this.lbl_timer.AutoSize = true;
-            this.lbl_timer.Location = new System.Drawing.Point(50, 27);
+            this.lbl_timer.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_timer.Location = new System.Drawing.Point(50, 10);
             this.lbl_timer.Name = "lbl_timer";
-            this.lbl_timer.Size = new System.Drawing.Size(119, 13);
+            this.lbl_timer.Size = new System.Drawing.Size(222, 30);
             this.lbl_timer.TabIndex = 2;
             this.lbl_timer.Text = "Time Elapsed: 00:00:00";
             // 
@@ -245,56 +287,6 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.DefaultExt = "qset";
-            this.openFileDialog.Filter = "Question set file|*.qset";
-            // 
-            // saveFileDialog
-            // 
-            this.saveFileDialog.DefaultExt = "qset";
-            this.saveFileDialog.Filter = "Question set file|*.qset";
-            // 
-            // mainMenu
-            // 
-            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.mainMenu.Location = new System.Drawing.Point(0, 0);
-            this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(900, 24);
-            this.mainMenu.TabIndex = 3;
-            this.mainMenu.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
             // QuestionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,29 +294,31 @@
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.pnl_holder);
             this.Controls.Add(this.pnl_bottom);
-            this.Controls.Add(this.mainMenu);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(900, 400);
             this.Name = "QuestionPage";
-            this.Text = "IoE Model Entrance - Question Editor";
+            this.Text = "IoE Model Entrance";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.QuestionsEditor_Load);
             this.pnl_holder.ResumeLayout(false);
             this.pnl_holder.PerformLayout();
+            this.pnl_title.ResumeLayout(false);
+            this.pnl_title.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_titleLogo)).EndInit();
             this.pnl_question.ResumeLayout(false);
             this.pnl_question.PerformLayout();
             this.pnl_bottom.ResumeLayout(false);
             this.pnl_bottom.PerformLayout();
-            this.mainMenu.ResumeLayout(false);
-            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel pnl_holder;
+        private System.Windows.Forms.Panel pnl_title;
         private System.Windows.Forms.Label lbl_qn1;
         private System.Windows.Forms.RichTextBox rtb_optionb1;
         private System.Windows.Forms.RichTextBox rtb_optiond1;
@@ -334,19 +328,14 @@
         private System.Windows.Forms.Panel pnl_bottom;
         private System.Windows.Forms.Button btn_prev;
         private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.MenuStrip mainMenu;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_question;
         private System.Windows.Forms.RadioButton radio_d;
         private System.Windows.Forms.RadioButton radio_b;
         private System.Windows.Forms.RadioButton radio_c;
         private System.Windows.Forms.RadioButton radio_a;
         private System.Windows.Forms.Label lbl_timer;
+        private System.Windows.Forms.PictureBox img_titleLogo;
+        private System.Windows.Forms.Label lbl_titleText;
     }
 }
 
