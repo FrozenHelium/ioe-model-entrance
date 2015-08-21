@@ -124,9 +124,6 @@ namespace Model_Entrance
             m_timer.Elapsed += new System.Timers.ElapsedEventHandler(time_elapsed);
             m_timer.SynchronizingObject = this;
 
-            if (m_sets.Length > 0)
-                set_changed(randomToolStripMenuItem, null);
-
             pnl_holder.Hide();
             pnl_bottom.Hide();
             m_loginscreen = new FormLogIn(this);
@@ -141,6 +138,9 @@ namespace Model_Entrance
             m_loginscreen.Close();
             pnl_holder.Show();
             pnl_bottom.Show();
+
+            if (m_sets.Length > 0)
+                set_changed(randomToolStripMenuItem, null);
         }
 
         private void LoadSets()
@@ -289,6 +289,10 @@ namespace Model_Entrance
                 qc.panel.Height = qc.optionc.Top + Math.Max(qc.optiona.Height, qc.optionb.Height) + 20;
                 top += qc.panel.Height;
             }
+            if (m_currentPage == m_totalPages - 1)
+                btn_next.Text = "Submit";
+            else
+                btn_next.Text = "Next";
         }
 
         private void btn_prev_Click(object sender, EventArgs e)
@@ -296,17 +300,38 @@ namespace Model_Entrance
             if (m_currentPage == 0)
                 return;
             m_currentPage--;
+            pnl_title.Select();
             RefreshQuestions();
+            RefreshControls();
         }
 
         private void btn_next_Click(object sender, EventArgs e)
         {
-            if (m_currentPage >= m_totalPages - 1)
+            if (m_currentPage >= m_totalPages)
                 return;
+            if (m_currentPage == m_totalPages - 1)
+            {
+                Submit();
+                return;
+            }
             m_currentPage++;
+            pnl_title.Select();
             RefreshQuestions();
+            RefreshControls();
         }
 
+        private void Submit()
+        {
+            DialogResult dialogResult = MessageBox.Show("You have ... questions unanswered !", "Are you sure you want to submit ?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
 
         private void content_resized(object _sender, ContentsResizedEventArgs e)
         {
