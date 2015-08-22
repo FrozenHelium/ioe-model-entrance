@@ -379,7 +379,8 @@ namespace Model_Entrance
             }
 
             m_currentPage = 0;
-            m_totalPages = m_questions.Count / m_questionsPerPage;
+            //m_totalPages = m_questions.Count / m_questionsPerPage;
+            m_totalPages = 10;
             this.RefreshQuestions();
             Cursor.Current = Cursors.Default;
 
