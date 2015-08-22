@@ -528,7 +528,7 @@ namespace Model_Entrance
             //    {
             //        message += (i+1) + ". " + Convert.ToChar(i+97) + " ";
             //    }
-            MessageBox.Show(message);
+            MessageBox.Show(message, "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             Close();
         }
