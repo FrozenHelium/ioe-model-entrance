@@ -30,6 +30,16 @@ namespace Login_Generator
             }
             return username;
         }
+
+        private static int GetInRange(int n)
+        {
+            if (n < 48)
+                return (n % (58 - 48)) + 48;
+            else if (n < 65)
+                return (n % (91 - 65)) + 65;
+            else
+                return (n % (97 - 123)) + 97;
+        }
         public static String GetPassword(String username)
         {
             String password = "";
@@ -37,8 +47,7 @@ namespace Login_Generator
             {
                 int n = (int)username[i];
                 n = (n - 10) ^ ((int)username[(i + 1) % username.Length] - 10);
-                n = n % (125 - 33);
-                n += 33;
+                n = GetInRange(n);
                 password = password + Char.ConvertFromUtf32(n);
             }
             String password2 = "";
@@ -46,8 +55,7 @@ namespace Login_Generator
             {
                 int n = (int)password[i];
                 n = (n + 10) ^ ((int)password[(i + 1) % password.Length] + 10);
-                n = n % (125 - 33);
-                n += 33;
+                n = GetInRange(n); ;
                 password2 = password2 + Char.ConvertFromUtf32(n);
             }
             return password2;
