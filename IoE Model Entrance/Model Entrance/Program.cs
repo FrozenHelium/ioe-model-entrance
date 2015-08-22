@@ -17,7 +17,7 @@ namespace Model_Entrance
         {
             if (!CheckForCD())
             {
-                MessageBox.Show("Please insert the provided CD to run this software.");
+                MessageBox.Show("Error! can't find the proper CD in the drive. \n\rPlease insert the provided CD to run this software.", "Model-Entrance", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Application.EnableVisualStyles();
