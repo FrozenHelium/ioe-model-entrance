@@ -197,7 +197,7 @@ namespace Model_Entrance
         public void time_elapsed(object sender, System.Timers.ElapsedEventArgs args)
         {
             seconds++;
-            lbl_timer.Text = "Time Elapsed: " + TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
+            lbl_timer.Text = "Time Remaining: " + TimeSpan.FromSeconds(target_seconds - seconds).ToString(@"hh\:mm\:ss");
 
             if (seconds == target_seconds)
             {
@@ -484,11 +484,16 @@ namespace Model_Entrance
                 return;
             if (m_currentPage == m_totalPages - 1)
             {
-                DialogResult dialogResult = MessageBox.Show("Once submitted, you cannot edit your answers !", "Are you sure ?", MessageBoxButtons.YesNo);
+                int unanswered = 0;
+                String message = "Once submitted, you cannot edit your answers !";
+                foreach (int a in m_answers)
+                    if (a < 0)
+                        unanswered++;
+                if (unanswered > 0)
+                    message = "You have " + unanswered + " unanswered questions.\n" + message;
+                DialogResult dialogResult = MessageBox.Show(message, "Are you sure ?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
-                {
                     Submit();
-                }
                 return;
             }
             m_currentPage++;
@@ -593,7 +598,7 @@ namespace Model_Entrance
 
             // Reset time
             seconds = 0;
-            lbl_timer.Text = "Time Elapsed: " + TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
+            lbl_timer.Text = "Time Remaining: " + TimeSpan.FromSeconds(target_seconds - seconds).ToString(@"hh\:mm\:ss");
             m_timer.Stop();
             m_timer.Start();
         }
