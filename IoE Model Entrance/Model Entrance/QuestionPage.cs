@@ -544,7 +544,7 @@ namespace Model_Entrance
 
             message += " (" + percentage + "%)";
 
-            MessageBox.Show(message);
+            MessageBox.Show(message, "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             Close();
         }
