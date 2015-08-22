@@ -15,11 +15,11 @@ namespace Model_Entrance
         [STAThread]
         static void Main()
         {
-            if (!CheckForCD())
-            {
-                MessageBox.Show("Please insert the provided CD to run this software.");
-                return;
-            }
+            //if (!CheckForCD())
+            //{
+            //    MessageBox.Show("Please insert the provided CD to run this software.");
+            //    return;
+            //}
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new QuestionPage());
